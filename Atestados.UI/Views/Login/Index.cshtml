@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div id="contenedorLogueo" class="contenedorLogueo">
+
+
+    <div class="container">
+        <div id="imgLogTec"></div>
+        <div id="datosLogueo" class="d-flex justify-content-between">
+            <div class="p-1">
+            </div>
+            <div class="p-1">
+                <div class="">
+                    <div class="">
+                        <div class="">
+                            <div class="row bordesTitulo">
+                                <div id="nombreAppPortal" style="max-width: 350px;" class="col-sm-12 text-center"><h4>Atestados TEC</h4></div>
+                            </div>
+                            <!--Form de Logueo de aplicación-->
+                            <form role="form" class="" name="formAutenticarUsuario">
+                                <div style="margin-bottom: 15px; margin-top: 20px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input id="user" type="text" class="form-control" name="username" value="" placeholder="Nombre de Usuario" autofocus="autofocus">
+                                </div>
+
+                                <div style="margin-bottom: 15px; margin-top: 10px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input id="pass" type="password" class="form-control" name="password" placeholder="Contraseña">
+                                </div>
+                                <div style="display: none; font-family: Lora, Helvetica Neue, Helvetica, Arial, sans-serif;" id="idpasserror" class="error">Usuario ó Contraseña Incorrectos! </div>
+                                <div class="input-group">
+                                </div>
+
+
+                                <div style="margin-top: 10px; text-align: center" class="form-group">
+                                    <input type="button"  value="Ingresar" class="btn btn-primary btn btn-generadoNew hoverShadowBuscar" id="ingresar" style="background: rgba(16, 14, 48, 0.91);" />
+                                
+                                        <div hidden id="cargando" class="spinner icon-spinner-2" style="color: white; float: right;" aria-hidden="true"></div>
+                                   
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-1">
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+     
+    <!-- Modal Validación de datos ingresados -->
+    <div id="popValidacion" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header popupmodalFallido">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Problemas de logueo</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="popMensaje"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Fallido -->
+    <div id="popFallo" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header popupmodalFallido">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Aviso</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="popMensaje"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Modal Validación Atestados -->
+    <div id="popFalloValidacionAtestados" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header popupmodalFallido">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Aviso</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="popMensaje"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnIrWebAtestados" class="btn btn-danger">Ir a sitio para registrarse</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+
+<!--Script de logueo-->
+<script src="~/Scripts/Controllers/Login_v131.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161814653-1"></script>
+<script>
+ //Script del analytics
+</script>

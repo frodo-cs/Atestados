@@ -1,0 +1,47 @@
+﻿
+<nav id="navHeader" class="navbar navbar-fixed-top" role="navigation">
+    <div class="Cabeceraheader">
+        <div class="container">
+            <!-- Logo TEC -->
+            <div class="navbar-header">
+                <a class="img-responsive ImagenCabecera" href="#">
+                    <img src="~/Content/img/logotec_blanco.png" alt="">
+                </a>
+            </div>
+            <!-- Fin Logo TEC -->
+
+
+            <div class="collapse navbar-collapse">
+                <div class="navbar-nav navbar-right" style="height:40px">
+
+                    <div class="PosicionImagenUsuario" style="position: relative">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="~/Content/img/perfil.png" class="ImagenUsuario" /></a>
+                        <div class="dropdown-menu CuadroPerfil centerNoBlock">
+                           
+                                    <div><a id="aPerfil" href="~/Home/Perfil"><img class="img-responsive" style="margin: auto;" src="~/Content/img/perfil.png" /></a></div>
+                                    @*<a href="~/Home/Perfil" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-edit"></span> Editar mi perfil</a>*@
+                                    <label class="NombreUsuario">@ViewBag.NombreCompleto</label>
+                                    <a href="@Url.Action("CerrarSesion","Login")" class="btn btn-sm btn-default btn_Perfil"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a>
+                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="CabeceraSistema">
+        <button type="button" title="Menu" class="BotonMenu collapsed" id="Btn_MenuPrin">
+            <span class="icon-bar icobar2 margin-bottom-3px icon-1" ></span>
+            <span class="icon-bar icobar2 margin-bottom-3px icon-2"></span>
+            <span class="icon-bar icobar2 icon-3"></span>
+        </button>
+        <label style="margin-top: 10px; color: #005085; font-weight: bold; font-size: 20px">Atestados TEC</label>
+
+    </div>
+    <div class="ContenedorMenu">
+
+        @RenderPage("~/Views/Shared/Menu.cshtml")
+    </div>
+    <!-- Fin container de navegación -->
+</nav>
+
