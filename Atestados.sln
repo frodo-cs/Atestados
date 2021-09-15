@@ -20,6 +20,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atestados.Utilitarios", "At
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atestados.WCF", "Atestados.WCF\Atestados.WCF.csproj", "{C6E3570E-C9D4-402F-BBC2-3AC52065C546}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atestados.WindowsService", "Atestados.WindowsService\Atestados.WindowsService.csproj", "{ADADABDB-282B-4814-A7DD-AA81F5E480D0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C6E3570E-C9D4-402F-BBC2-3AC52065C546} = {C6E3570E-C9D4-402F-BBC2-3AC52065C546}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +59,10 @@ Global
 		{C6E3570E-C9D4-402F-BBC2-3AC52065C546}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6E3570E-C9D4-402F-BBC2-3AC52065C546}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6E3570E-C9D4-402F-BBC2-3AC52065C546}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADADABDB-282B-4814-A7DD-AA81F5E480D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADADABDB-282B-4814-A7DD-AA81F5E480D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADADABDB-282B-4814-A7DD-AA81F5E480D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADADABDB-282B-4814-A7DD-AA81F5E480D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,14 +4,14 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using Atestados.Utilitarios.Mensajes;
-//using Atestados.WCF.WCF_Email;
+using Atestados.WCF.WCF_Email;
 
 namespace Atestados.WCF
 {
     public class Email
     {
         //instancias
-        /*
+
         WCF_Email.EmailClient enviadorEmail = new WCF_Email.EmailClient();
 
         public WCF_Email.TecRespuesta EnvioCorreo(string nombreAgendador, string idReunionAtestados, string urlAtestados, string password, string email, string asunto, DateTime fecha, int tipo, Byte[] attatchment, int cantidadParticipantes, int duracion, string nombreEquipo, string urlEquipo,string nombreSolicitante)
@@ -77,7 +77,7 @@ namespace Atestados.WCF
             }
         }
 
-        */
+
 
         public static string AtestadosCorreo(string pContenido, string pLinkSection,string pPasswordSection, string pIdReunionSection , string pCorreoSoporteTEC, bool IsmostrarBoton, bool IsmostrarNotas)
         {
