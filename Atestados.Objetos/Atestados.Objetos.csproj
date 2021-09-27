@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -53,10 +56,21 @@
     <Compile Include="Clases\Configuracion.cs" />
     <Compile Include="Clases\oCredenciales.cs" />
     <Compile Include="Clases\oRespuesta.cs" />
+    <Compile Include="Dtos\PersonasDto.cs" />
+    <Compile Include="Dtos\RubroDto.cs" />
+    <Compile Include="Dtos\TipoRubroDto.cs" />
+    <Compile Include="MappingConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Atestados.Datos\Atestados.Datos.csproj">
+      <Project>{12EF2338-C255-4FB5-BC88-B7B856A32FD9}</Project>
+      <Name>Atestados.Datos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
