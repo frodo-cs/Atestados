@@ -11,106 +11,112 @@ using Atestados.Negocios.Negocios;
 
 namespace Atestados.UI.Controllers
 {
-    public class TipoRubroesController : Controller
+    public class PersonaController : Controller
     {
         private AtestadosEntities db = new AtestadosEntities();
-        Catalogos catalogos = new Catalogos();
 
-        // GET: TipoRubroes
+        InformaciónGeneral información = new InformaciónGeneral();
+
+        // GET: Personas
         public ActionResult Index()
         {
-            return View(catalogos.CargarTiposDeRubros());
+            return View(información.CargarPersonas());
         }
 
-        // GET: TipoRubroes/Details/5
+        // GET: Personas/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var tipoRubro = catalogos.CargarTipoRubro(id);
-            if (tipoRubro == null)
+            var persona = información.CargarPersona(id);
+
+            if (persona == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoRubro);
+
+            return View(persona);
         }
 
-        // GET: TipoRubroes/Create
+        // GET: Personas/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoRubroes/Create
+        // POST: Personas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TipoRubroID,Nombre")] TipoRubro tipoRubro)
+        public ActionResult Create([Bind(Include = "PersonaID,Nombre,PrimerApellido,SegundoApellido,Email,CategoriaActual,TipoUsuario,Telefono")] Persona persona)
         {
             if (ModelState.IsValid)
             {
-                catalogos.GuardarTipoRubro(tipoRubro);
+                información.GuardarPersona(persona);
                 return RedirectToAction("Index");
             }
 
-            return View(tipoRubro);
+            return View(persona);
         }
 
-        // GET: TipoRubroes/Edit/5
+        // GET: Personas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoRubro tipoRubro = catalogos.CargarTipoRubroParaEditar(id);
-            if (tipoRubro == null)
+
+            Persona persona = información.CargarPersonaParaEditar(id);
+            
+            if (persona == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoRubro);
+            return View(persona);
         }
 
-        // POST: TipoRubroes/Edit/5
+        // POST: Personas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TipoRubroID,Nombre")] TipoRubro tipoRubro)
+        public ActionResult Edit([Bind(Include = "PersonaID,Nombre,PrimerApellido,SegundoApellido,Email,CategoriaActual,TipoUsuario,Telefono")] Persona persona)
         {
             if (ModelState.IsValid)
             {
-                catalogos.EditarTipoRubro(tipoRubro);
+                información.EditarPersona(persona);
                 return RedirectToAction("Index");
             }
-            return View(tipoRubro);
+            return View(persona);
         }
 
-        // GET: TipoRubroes/Delete/5
+        // GET: Personas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoRubro tipoRubro = catalogos.CargarTipoRubroParaBorrar(id);
-            if (tipoRubro == null)
+            Persona persona = información.CargarPersonaParaBorrar(id);
+            if (persona == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoRubro);
+            return View(persona);
         }
 
-        // POST: TipoRubroes/Delete/5
+        // POST: Personas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            catalogos.BorrarTipoRubro(id);
+            información.BorrarPersona(id);
             return RedirectToAction("Index");
         }
 

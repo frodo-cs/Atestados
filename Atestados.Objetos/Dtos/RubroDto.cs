@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atestados.Objetos.Dtos
 {
-    public class RubroDto
+    public class RubroDTO
     {
         public int RubroID { get; set; }
         public string Nombre { get; set; }

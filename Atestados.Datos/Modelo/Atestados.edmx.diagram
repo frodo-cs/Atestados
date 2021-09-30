@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e7471bb64b37463a97ea42371eb48643" Name="Diagram1">
+      <Diagram DiagramId="e5bc7204ed6a4ca68d426fde4bb6c696" Name="Diagram1">
         <EntityTypeShape EntityType="AtestadosModel.Archivo" Width="1.5" PointX="5.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AtestadosModel.Atestado" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="AtestadosModel.AtestadoXPersona" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
@@ -12,17 +12,17 @@
         <EntityTypeShape EntityType="AtestadosModel.Fecha" Width="1.5" PointX="2.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AtestadosModel.Idioma" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AtestadosModel.InfoEditorial" Width="1.5" PointX="7.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AtestadosModel.Pai" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtestadosModel.Pais" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AtestadosModel.Persona" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AtestadosModel.Rubro" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AtestadosModel.TipoRubro" Width="1.5" PointX="1.5" PointY="11.375" IsExpanded="true" />
-        <AssociationConnector Association="AtestadosModel.FK__Atestado__PaisID__32E0915F" ManuallyRouted="false" />
-        <AssociationConnector Association="AtestadosModel.FK__Atestado__Person__33D4B598" ManuallyRouted="false" />
-        <AssociationConnector Association="AtestadosModel.FK__Atestado__RubroI__34C8D9D1" ManuallyRouted="false" />
-        <AssociationConnector Association="AtestadosModel.FK__AtestadoX__Atest__3B75D760" ManuallyRouted="false" />
-        <AssociationConnector Association="AtestadosModel.FK__DominioId__Atest__37A5467C" ManuallyRouted="false" />
-        <AssociationConnector Association="AtestadosModel.FK__AtestadoX__Perso__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="AtestadosModel.FK__DominioId__Idiom__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="AtestadosModel.FK__Atestado__PaisID__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="AtestadosModel.FK__Atestado__Person__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="AtestadosModel.FK__Atestado__RubroI__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="AtestadosModel.FK__AtestadoX__Atest__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="AtestadosModel.FK__DominioId__Atest__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="AtestadosModel.FK__AtestadoX__Perso__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="AtestadosModel.FK__DominioId__Idiom__3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="AtestadosModel.Fk_TipoRubro" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

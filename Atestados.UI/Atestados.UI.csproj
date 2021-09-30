@@ -190,9 +190,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\PersonasController.cs" />
-    <Compile Include="Controllers\RubroesController.cs" />
-    <Compile Include="Controllers\TipoRubroesController.cs" />
+    <Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\RubroController.cs" />
+    <Compile Include="Controllers\TipoRubroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -313,21 +313,21 @@
     <Content Include="Views\Home\home_participantes.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Home\dashboard_consulta_usuario.cshtml" />
-    <Content Include="Views\Personas\Create.cshtml" />
-    <Content Include="Views\Personas\Delete.cshtml" />
-    <Content Include="Views\Personas\Details.cshtml" />
-    <Content Include="Views\Personas\Edit.cshtml" />
-    <Content Include="Views\Personas\Index.cshtml" />
-    <Content Include="Views\TipoRubroes\Create.cshtml" />
-    <Content Include="Views\TipoRubroes\Delete.cshtml" />
-    <Content Include="Views\TipoRubroes\Details.cshtml" />
-    <Content Include="Views\TipoRubroes\Edit.cshtml" />
-    <Content Include="Views\TipoRubroes\Index.cshtml" />
-    <Content Include="Views\Rubroes\Create.cshtml" />
-    <Content Include="Views\Rubroes\Delete.cshtml" />
-    <Content Include="Views\Rubroes\Details.cshtml" />
-    <Content Include="Views\Rubroes\Edit.cshtml" />
-    <Content Include="Views\Rubroes\Index.cshtml" />
+    <Content Include="Views\Persona\Create.cshtml" />
+    <Content Include="Views\Persona\Delete.cshtml" />
+    <Content Include="Views\Persona\Details.cshtml" />
+    <Content Include="Views\Persona\Edit.cshtml" />
+    <Content Include="Views\Persona\Index.cshtml" />
+    <Content Include="Views\TipoRubro\Create.cshtml" />
+    <Content Include="Views\TipoRubro\Delete.cshtml" />
+    <Content Include="Views\TipoRubro\Details.cshtml" />
+    <Content Include="Views\TipoRubro\Edit.cshtml" />
+    <Content Include="Views\TipoRubro\Index.cshtml" />
+    <Content Include="Views\Rubro\Create.cshtml" />
+    <Content Include="Views\Rubro\Delete.cshtml" />
+    <Content Include="Views\Rubro\Details.cshtml" />
+    <Content Include="Views\Rubro\Edit.cshtml" />
+    <Content Include="Views\Rubro\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

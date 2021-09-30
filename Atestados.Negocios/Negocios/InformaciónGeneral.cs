@@ -16,14 +16,14 @@ namespace Atestados.Negocios.Negocios
         private AtestadosEntities db = new AtestadosEntities();
 
         
-        public PersonasDto CargarPersona(int? id)
+        public PersonaDTO CargarPersona(int? id)
         {
-            Persona persona = db.Personas.Find(id);
+            Persona persona = db.Persona.Find(id);
 
             if (persona == null)
                 return null;
 
-            PersonasDto personasDto = AutoMapper.Mapper.Map<Persona, PersonasDto>(persona);
+            PersonaDTO personasDto = AutoMapper.Mapper.Map<Persona, PersonaDTO>(persona);
 
             return personasDto;
             
@@ -31,7 +31,7 @@ namespace Atestados.Negocios.Negocios
 
         public Persona CargarPersonaParaEditar(int? id)
         {
-            Persona persona = db.Personas.Find(id);
+            Persona persona = db.Persona.Find(id);
 
             if (persona == null)
                 return null;
@@ -42,7 +42,7 @@ namespace Atestados.Negocios.Negocios
 
         public Persona CargarPersonaParaBorrar(int? id)
         {
-            Persona persona = db.Personas.Find(id);
+            Persona persona = db.Persona.Find(id);
 
             if (persona == null)
                 return null;
@@ -51,13 +51,13 @@ namespace Atestados.Negocios.Negocios
 
         }
 
-        public List<PersonasDto> CargarPersonas()
+        public List<PersonaDTO> CargarPersonas()
         {
             //var config = new MapperConfiguration(cfg => cfg.Create)
 
-            List<Persona> listaPersona = db.Personas.ToList();
+            List<Persona> listaPersona = db.Persona.ToList();
 
-            List<PersonasDto> listaPersonasDto = AutoMapper.Mapper.Map<List<Persona>, List<PersonasDto>>(listaPersona);
+            List<PersonaDTO> listaPersonasDto = AutoMapper.Mapper.Map<List<Persona>, List<PersonaDTO>>(listaPersona);
 
             return listaPersonasDto;
 
@@ -65,7 +65,7 @@ namespace Atestados.Negocios.Negocios
 
         public void GuardarPersona(Persona persona)
         {
-            db.Personas.Add(persona);
+            db.Persona.Add(persona);
             db.SaveChanges();
         }
 
@@ -77,8 +77,8 @@ namespace Atestados.Negocios.Negocios
 
         public void BorrarPersona(int id)
         {
-            Persona persona = db.Personas.Find(id);
-            db.Personas.Remove(persona);
+            Persona persona = db.Persona.Find(id);
+            db.Persona.Remove(persona);
             db.SaveChanges();
         }
     }

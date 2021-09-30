@@ -8,22 +8,21 @@ using System.Web;
 using System.Web.Mvc;
 using Atestados.Datos.Modelo;
 using Atestados.Negocios.Negocios;
-using Atestados.Objetos.Dtos;
 
 namespace Atestados.UI.Controllers
 {
-    public class RubroesController : Controller
+    public class TipoRubroController : Controller
     {
         private AtestadosEntities db = new AtestadosEntities();
         Catalogos catalogos = new Catalogos();
 
-        // GET: Rubroes
+        // GET: TipoRubroes
         public ActionResult Index()
         {
-            return View(catalogos.CargarRubros());
+            return View(catalogos.CargarTiposDeRubros());
         }
 
-        // GET: Rubroes/Details/5
+        // GET: TipoRubroes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -31,91 +30,87 @@ namespace Atestados.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            RubroDto rubro = catalogos.CargarRubro(id);
-            if (rubro == null)
+            var tipoRubro = catalogos.CargarTipoRubro(id);
+            if (tipoRubro == null)
             {
                 return HttpNotFound();
             }
-            return View(rubro);
+            return View(tipoRubro);
         }
 
-        // GET: Rubroes/Create
+        // GET: TipoRubroes/Create
         public ActionResult Create()
         {
-            ViewBag.TipoRubro = new SelectList(db.TipoRubroes, "TipoRubroID", "Nombre");
             return View();
         }
 
-        // POST: Rubroes/Create
+        // POST: TipoRubroes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RubroID,Nombre,Descripcion,TipoRubro")] Rubro rubro)
+        public ActionResult Create([Bind(Include = "TipoRubroID,Nombre")] TipoRubro tipoRubro)
         {
             if (ModelState.IsValid)
             {
-                catalogos.GuardarRubro(rubro);
+                catalogos.GuardarTipoRubro(tipoRubro);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TipoRubro = new SelectList(db.TipoRubroes, "TipoRubroID", "Nombre", rubro.TipoRubro);
-            return View(rubro);
+            return View(tipoRubro);
         }
 
-        // GET: Rubroes/Edit/5
+        // GET: TipoRubroes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rubro rubro = catalogos.CargarRubroParaEditar(id);
-            if (rubro == null)
+            TipoRubro tipoRubro = catalogos.CargarTipoRubroParaEditar(id);
+            if (tipoRubro == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TipoRubro = new SelectList(db.TipoRubroes, "TipoRubroID", "Nombre", rubro.TipoRubro);
-            return View(rubro);
+            return View(tipoRubro);
         }
 
-        // POST: Rubroes/Edit/5
+        // POST: TipoRubroes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RubroID,Nombre,Descripcion,TipoRubro")] Rubro rubro)
+        public ActionResult Edit([Bind(Include = "TipoRubroID,Nombre")] TipoRubro tipoRubro)
         {
             if (ModelState.IsValid)
             {
-                catalogos.EditarRubro(rubro);
+                catalogos.EditarTipoRubro(tipoRubro);
                 return RedirectToAction("Index");
             }
-            ViewBag.TipoRubro = new SelectList(db.TipoRubroes, "TipoRubroID", "Nombre", rubro.TipoRubro);
-            return View(rubro);
+            return View(tipoRubro);
         }
 
-        // GET: Rubroes/Delete/5
+        // GET: TipoRubroes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rubro rubro = catalogos.CargarRubroParaBorrar(id);
-            if (rubro == null)
+            TipoRubro tipoRubro = catalogos.CargarTipoRubroParaBorrar(id);
+            if (tipoRubro == null)
             {
                 return HttpNotFound();
             }
-            return View(rubro);
+            return View(tipoRubro);
         }
 
-        // POST: Rubroes/Delete/5
+        // POST: TipoRubroes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            catalogos.BorrarRubro(id);
+            catalogos.BorrarTipoRubro(id);
             return RedirectToAction("Index");
         }
 

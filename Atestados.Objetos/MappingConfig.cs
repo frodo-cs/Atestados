@@ -14,7 +14,7 @@ namespace Atestados.Objetos
         {
             AutoMapper.Mapper.Initialize(config =>
             {
-                config.CreateMap<Persona, PersonasDto>()
+                config.CreateMap<Persona, PersonaDTO>()
                 .ForMember(dest => dest.PersonaID,
                     opt => opt.MapFrom(src => src.PersonaID))
                 .ForMember(dest => dest.Nombre,
@@ -26,13 +26,13 @@ namespace Atestados.Objetos
                 .ForMember(dest => dest.Email,
                     opt => opt.MapFrom(src => src.Email));
 
-                config.CreateMap<TipoRubro, TipoRubroDto>()
+                config.CreateMap<TipoRubro, TipoRubroDTO>()
                 .ForMember(dest => dest.TipoRubroID,
                     opt => opt.MapFrom(src => src.TipoRubroID))
                 .ForMember(dest => dest.Nombre,
                     opt => opt.MapFrom(src => src.Nombre));
 
-                config.CreateMap<Rubro, RubroDto>()
+                config.CreateMap<Rubro, RubroDTO>()
                 .ForMember(dest => dest.RubroID,
                     opt => opt.MapFrom(src => src.RubroID))
                 .ForMember(dest => dest.Nombre,

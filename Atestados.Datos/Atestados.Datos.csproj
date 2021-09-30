@@ -110,7 +110,7 @@
     <Compile Include="Modelo\InfoEditorial.cs">
       <DependentUpon>Atestados.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\Pai.cs">
+    <Compile Include="Modelo\Pais.cs">
       <DependentUpon>Atestados.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\Persona.cs">
@@ -179,5 +179,6 @@
       <LastGenOutput>Atestados.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

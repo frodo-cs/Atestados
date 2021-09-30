@@ -56,9 +56,9 @@
     <Compile Include="Clases\Configuracion.cs" />
     <Compile Include="Clases\oCredenciales.cs" />
     <Compile Include="Clases\oRespuesta.cs" />
-    <Compile Include="Dtos\PersonasDto.cs" />
-    <Compile Include="Dtos\RubroDto.cs" />
-    <Compile Include="Dtos\TipoRubroDto.cs" />
+    <Compile Include="Dtos\PersonaDTO.cs" />
+    <Compile Include="Dtos\RubroDTO.cs" />
+    <Compile Include="Dtos\TipoRubroDTO.cs" />
     <Compile Include="MappingConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

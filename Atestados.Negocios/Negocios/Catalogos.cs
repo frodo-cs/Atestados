@@ -14,31 +14,31 @@ namespace Atestados.Negocios.Negocios
         private AtestadosEntities db = new AtestadosEntities();
 
         #region TipoRubro
-        public List<TipoRubroDto> CargarTiposDeRubros()
+        public List<TipoRubroDTO> CargarTiposDeRubros()
         {
             //var config = new MapperConfiguration(cfg => cfg.Create)
 
-            List<TipoRubro> listaTipoRubro = db.TipoRubroes.ToList();
+            List<TipoRubro> listaTipoRubro = db.TipoRubro.ToList();
 
-            List<TipoRubroDto> listaTipoRubrosDto = AutoMapper.Mapper.Map<List<TipoRubro>, List<TipoRubroDto>>(listaTipoRubro);
+            List<TipoRubroDTO> listaTipoRubrosDto = AutoMapper.Mapper.Map<List<TipoRubro>, List<TipoRubroDTO>>(listaTipoRubro);
 
             return listaTipoRubrosDto;
         }
 
-        public TipoRubroDto CargarTipoRubro(int? id)
+        public TipoRubroDTO CargarTipoRubro(int? id)
         {
-            TipoRubro rubro = db.TipoRubroes.Find(id);
+            TipoRubro rubro = db.TipoRubro.Find(id);
 
             if (rubro == null)
                 return null;
 
-            TipoRubroDto rubroDto = AutoMapper.Mapper.Map<TipoRubro, TipoRubroDto>(rubro);
+            TipoRubroDTO rubroDto = AutoMapper.Mapper.Map<TipoRubro, TipoRubroDTO>(rubro);
             return rubroDto;
         }
 
         public TipoRubro CargarTipoRubroParaEditar(int? id)
         {
-            TipoRubro tipoRubro = db.TipoRubroes.Find(id);
+            TipoRubro tipoRubro = db.TipoRubro.Find(id);
 
             if (tipoRubro == null)
                 return null;
@@ -49,7 +49,7 @@ namespace Atestados.Negocios.Negocios
 
         public TipoRubro CargarTipoRubroParaBorrar(int? id)
         {
-            TipoRubro tipoRubro = db.TipoRubroes.Find(id);
+            TipoRubro tipoRubro = db.TipoRubro.Find(id);
 
             if (tipoRubro == null)
                 return null;
@@ -60,7 +60,7 @@ namespace Atestados.Negocios.Negocios
 
         public void GuardarTipoRubro(TipoRubro tipoRubro)
         {
-            db.TipoRubroes.Add(tipoRubro);
+            db.TipoRubro.Add(tipoRubro);
             db.SaveChanges();
         }
 
@@ -72,39 +72,39 @@ namespace Atestados.Negocios.Negocios
 
         public void BorrarTipoRubro(int id)
         {
-            TipoRubro tipoRubro = db.TipoRubroes.Find(id);
-            db.TipoRubroes.Remove(tipoRubro);
+            TipoRubro tipoRubro = db.TipoRubro.Find(id);
+            db.TipoRubro.Remove(tipoRubro);
             db.SaveChanges();
         }
 
         #endregion
 
         #region Rubro
-        public List<RubroDto> CargarRubros()
+        public List<RubroDTO> CargarRubros()
         {
             //var config = new MapperConfiguration(cfg => cfg.Create)
 
-            List<Rubro> listaRubro = db.Rubroes.ToList();
+            List<Rubro> listaRubro = db.Rubro.ToList();
 
-            List<RubroDto> listaRubrosDto = AutoMapper.Mapper.Map<List<Rubro>, List<RubroDto>>(listaRubro);
+            List<RubroDTO> listaRubrosDto = AutoMapper.Mapper.Map<List<Rubro>, List<RubroDTO>>(listaRubro);
 
             return listaRubrosDto;
         }
 
-        public RubroDto CargarRubro(int? id)
+        public RubroDTO CargarRubro(int? id)
         {
-            Rubro rubro = db.Rubroes.Find(id);
+            Rubro rubro = db.Rubro.Find(id);
 
             if (rubro == null)
                 return null;
 
-            RubroDto rubroDto = AutoMapper.Mapper.Map<Rubro, RubroDto>(rubro);
+            RubroDTO rubroDto = AutoMapper.Mapper.Map<Rubro, RubroDTO>(rubro);
             return rubroDto;
         }
 
         public Rubro CargarRubroParaEditar(int? id)
         {
-            Rubro rubro = db.Rubroes.Find(id);
+            Rubro rubro = db.Rubro.Find(id);
 
             if (rubro == null)
                 return null;
@@ -115,7 +115,7 @@ namespace Atestados.Negocios.Negocios
 
         public Rubro CargarRubroParaBorrar(int? id)
         {
-            Rubro rubro = db.Rubroes.Find(id);
+            Rubro rubro = db.Rubro.Find(id);
 
             if (rubro == null)
                 return null;
@@ -126,7 +126,7 @@ namespace Atestados.Negocios.Negocios
 
         public void GuardarRubro(Rubro rubro)
         {
-            db.Rubroes.Add(rubro);
+            db.Rubro.Add(rubro);
             db.SaveChanges();
         }
 
@@ -138,8 +138,8 @@ namespace Atestados.Negocios.Negocios
 
         public void BorrarRubro(int id)
         {
-            Rubro rubro = db.Rubroes.Find(id);
-            db.Rubroes.Remove(rubro);
+            Rubro rubro = db.Rubro.Find(id);
+            db.Rubro.Remove(rubro);
             db.SaveChanges();
         }
 
