@@ -9,11 +9,12 @@
           <Key>
             <PropertyRef Name="ArchivoID" />
           </Key>
-          <Property Name="ArchivoID" Type="int" Nullable="false" />
+          <Property Name="ArchivoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Obligatorio" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
           <Property Name="Datos" Type="varbinary(max)" />
           <Property Name="TipoArchivo" Type="varchar" MaxLength="200" />
+          <Property Name="AtestadoID" Type="int" />
         </EntityType>
         <EntityType Name="Atestado">
           <Key>
@@ -49,7 +50,6 @@
             <PropertyRef Name="DominioIdiomaID" />
           </Key>
           <Property Name="DominioIdiomaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AtestadoID" Type="int" />
           <Property Name="IdiomaID" Type="int" />
           <Property Name="Lectura" Type="int" Nullable="false" />
           <Property Name="Escrito" Type="int" Nullable="false" />
@@ -60,7 +60,7 @@
           <Key>
             <PropertyRef Name="FechaID" />
           </Key>
-          <Property Name="FechaID" Type="int" Nullable="false" />
+          <Property Name="FechaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FechaInicio" Type="date" />
           <Property Name="FechaFinal" Type="date" />
         </EntityType>
@@ -115,6 +115,18 @@
           <Property Name="TipoRubroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK__Archivo__Atestad__35BCFE0A">
+          <End Role="Atestado" Type="Self.Atestado" Multiplicity="0..1" />
+          <End Role="Archivo" Type="Self.Archivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atestado">
+              <PropertyRef Name="AtestadoID" />
+            </Principal>
+            <Dependent Role="Archivo">
+              <PropertyRef Name="AtestadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Atestado__PaisID__2D27B809">
           <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
           <End Role="Atestado" Type="Self.Atestado" Multiplicity="*" />
@@ -175,19 +187,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DominioId__Atest__3D5E1FD2">
-          <End Role="Atestado" Type="Self.Atestado" Multiplicity="0..1" />
-          <End Role="DominioIdioma" Type="Self.DominioIdioma" Multiplicity="*" />
+        <Association Name="FK__DominioId__Domin__403A8C7D">
+          <End Role="Atestado" Type="Self.Atestado" Multiplicity="1" />
+          <End Role="DominioIdioma" Type="Self.DominioIdioma" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Atestado">
               <PropertyRef Name="AtestadoID" />
             </Principal>
             <Dependent Role="DominioIdioma">
-              <PropertyRef Name="AtestadoID" />
+              <PropertyRef Name="DominioIdiomaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DominioId__Idiom__3E52440B">
+        <Association Name="FK__DominioId__Idiom__412EB0B6">
           <End Role="Idioma" Type="Self.Idioma" Multiplicity="0..1" />
           <End Role="DominioIdioma" Type="Self.DominioIdioma" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,6 +208,30 @@
             </Principal>
             <Dependent Role="DominioIdioma">
               <PropertyRef Name="IdiomaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Fecha__FechaID__38996AB5">
+          <End Role="Atestado" Type="Self.Atestado" Multiplicity="1" />
+          <End Role="Fecha" Type="Self.Fecha" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Atestado">
+              <PropertyRef Name="AtestadoID" />
+            </Principal>
+            <Dependent Role="Fecha">
+              <PropertyRef Name="FechaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InfoEdito__InfoE__3B75D760">
+          <End Role="Atestado" Type="Self.Atestado" Multiplicity="1" />
+          <End Role="InfoEditorial" Type="Self.InfoEditorial" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Atestado">
+              <PropertyRef Name="AtestadoID" />
+            </Principal>
+            <Dependent Role="InfoEditorial">
+              <PropertyRef Name="InfoEditorialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -223,6 +259,10 @@
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoRubro" EntityType="Self.TipoRubro" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Archivo__Atestad__35BCFE0A" Association="Self.FK__Archivo__Atestad__35BCFE0A">
+            <End Role="Atestado" EntitySet="Atestado" />
+            <End Role="Archivo" EntitySet="Archivo" />
+          </AssociationSet>
           <AssociationSet Name="FK__Atestado__PaisID__2D27B809" Association="Self.FK__Atestado__PaisID__2D27B809">
             <End Role="Pais" EntitySet="Pais" />
             <End Role="Atestado" EntitySet="Atestado" />
@@ -243,13 +283,21 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="AtestadoXPersona" EntitySet="AtestadoXPersona" />
           </AssociationSet>
-          <AssociationSet Name="FK__DominioId__Atest__3D5E1FD2" Association="Self.FK__DominioId__Atest__3D5E1FD2">
+          <AssociationSet Name="FK__DominioId__Domin__403A8C7D" Association="Self.FK__DominioId__Domin__403A8C7D">
             <End Role="Atestado" EntitySet="Atestado" />
             <End Role="DominioIdioma" EntitySet="DominioIdioma" />
           </AssociationSet>
-          <AssociationSet Name="FK__DominioId__Idiom__3E52440B" Association="Self.FK__DominioId__Idiom__3E52440B">
+          <AssociationSet Name="FK__DominioId__Idiom__412EB0B6" Association="Self.FK__DominioId__Idiom__412EB0B6">
             <End Role="Idioma" EntitySet="Idioma" />
             <End Role="DominioIdioma" EntitySet="DominioIdioma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Fecha__FechaID__38996AB5" Association="Self.FK__Fecha__FechaID__38996AB5">
+            <End Role="Atestado" EntitySet="Atestado" />
+            <End Role="Fecha" EntitySet="Fecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InfoEdito__InfoE__3B75D760" Association="Self.FK__InfoEdito__InfoE__3B75D760">
+            <End Role="Atestado" EntitySet="Atestado" />
+            <End Role="InfoEditorial" EntitySet="InfoEditorial" />
           </AssociationSet>
           <AssociationSet Name="Fk_TipoRubro" Association="Self.Fk_TipoRubro">
             <End Role="TipoRubro" EntitySet="TipoRubro" />
@@ -265,11 +313,13 @@
           <Key>
             <PropertyRef Name="ArchivoID" />
           </Key>
-          <Property Name="ArchivoID" Type="Int32" Nullable="false" />
+          <Property Name="ArchivoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Obligatorio" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Datos" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TipoArchivo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AtestadoID" Type="Int32" />
+          <NavigationProperty Name="Atestado" Relationship="Self.FK__Archivo__Atestad__35BCFE0A" FromRole="Archivo" ToRole="Atestado" />
         </EntityType>
         <EntityType Name="Atestado">
           <Key>
@@ -289,11 +339,14 @@
           <Property Name="PaisID" Type="Int32" />
           <Property Name="PersonaID" Type="Int32" />
           <Property Name="RubroID" Type="Int32" />
+          <NavigationProperty Name="Archivo" Relationship="Self.FK__Archivo__Atestad__35BCFE0A" FromRole="Atestado" ToRole="Archivo" />
           <NavigationProperty Name="Pais" Relationship="Self.FK__Atestado__PaisID__2D27B809" FromRole="Atestado" ToRole="Pais" />
           <NavigationProperty Name="Persona" Relationship="Self.FK__Atestado__Person__2E1BDC42" FromRole="Atestado" ToRole="Persona" />
           <NavigationProperty Name="Rubro" Relationship="Self.FK__Atestado__RubroI__2F10007B" FromRole="Atestado" ToRole="Rubro" />
           <NavigationProperty Name="AtestadoXPersona" Relationship="Self.FK__AtestadoX__Atest__31EC6D26" FromRole="Atestado" ToRole="AtestadoXPersona" />
-          <NavigationProperty Name="DominioIdioma" Relationship="Self.FK__DominioId__Atest__3D5E1FD2" FromRole="Atestado" ToRole="DominioIdioma" />
+          <NavigationProperty Name="DominioIdioma" Relationship="Self.FK__DominioId__Domin__403A8C7D" FromRole="Atestado" ToRole="DominioIdioma" />
+          <NavigationProperty Name="Fecha" Relationship="Self.FK__Fecha__FechaID__38996AB5" FromRole="Atestado" ToRole="Fecha" />
+          <NavigationProperty Name="InfoEditorial" Relationship="Self.FK__InfoEdito__InfoE__3B75D760" FromRole="Atestado" ToRole="InfoEditorial" />
         </EntityType>
         <EntityType Name="AtestadoXPersona">
           <Key>
@@ -312,22 +365,22 @@
             <PropertyRef Name="DominioIdiomaID" />
           </Key>
           <Property Name="DominioIdiomaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AtestadoID" Type="Int32" />
           <Property Name="IdiomaID" Type="Int32" />
           <Property Name="Lectura" Type="Int32" Nullable="false" />
           <Property Name="Escrito" Type="Int32" Nullable="false" />
           <Property Name="Auditiva" Type="Int32" Nullable="false" />
           <Property Name="Oral" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Atestado" Relationship="Self.FK__DominioId__Atest__3D5E1FD2" FromRole="DominioIdioma" ToRole="Atestado" />
-          <NavigationProperty Name="Idioma" Relationship="Self.FK__DominioId__Idiom__3E52440B" FromRole="DominioIdioma" ToRole="Idioma" />
+          <NavigationProperty Name="Atestado" Relationship="Self.FK__DominioId__Domin__403A8C7D" FromRole="DominioIdioma" ToRole="Atestado" />
+          <NavigationProperty Name="Idioma" Relationship="Self.FK__DominioId__Idiom__412EB0B6" FromRole="DominioIdioma" ToRole="Idioma" />
         </EntityType>
         <EntityType Name="Fecha">
           <Key>
             <PropertyRef Name="FechaID" />
           </Key>
-          <Property Name="FechaID" Type="Int32" Nullable="false" />
+          <Property Name="FechaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FechaInicio" Type="DateTime" Precision="0" />
           <Property Name="FechaFinal" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Atestado" Relationship="Self.FK__Fecha__FechaID__38996AB5" FromRole="Fecha" ToRole="Atestado" />
         </EntityType>
         <EntityType Name="Idioma">
           <Key>
@@ -335,7 +388,7 @@
           </Key>
           <Property Name="IdiomaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DominioIdioma" Relationship="Self.FK__DominioId__Idiom__3E52440B" FromRole="Idioma" ToRole="DominioIdioma" />
+          <NavigationProperty Name="DominioIdioma" Relationship="Self.FK__DominioId__Idiom__412EB0B6" FromRole="Idioma" ToRole="DominioIdioma" />
         </EntityType>
         <EntityType Name="InfoEditorial">
           <Key>
@@ -344,6 +397,7 @@
           <Property Name="InfoEditorialID" Type="Int32" Nullable="false" />
           <Property Name="Editorial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Website" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Atestado" Relationship="Self.FK__InfoEdito__InfoE__3B75D760" FromRole="InfoEditorial" ToRole="Atestado" />
         </EntityType>
         <EntityType Name="Pais">
           <Key>
@@ -387,6 +441,18 @@
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Rubro" Relationship="Self.Fk_TipoRubro" FromRole="TipoRubro" ToRole="Rubro" />
         </EntityType>
+        <Association Name="FK__Archivo__Atestad__35BCFE0A">
+          <End Role="Atestado" Type="Self.Atestado" Multiplicity="0..1" />
+          <End Role="Archivo" Type="Self.Archivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atestado">
+              <PropertyRef Name="AtestadoID" />
+            </Principal>
+            <Dependent Role="Archivo">
+              <PropertyRef Name="AtestadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Atestado__PaisID__2D27B809">
           <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
           <End Role="Atestado" Type="Self.Atestado" Multiplicity="*" />
@@ -435,15 +501,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DominioId__Atest__3D5E1FD2">
-          <End Role="Atestado" Type="Self.Atestado" Multiplicity="0..1" />
-          <End Role="DominioIdioma" Type="Self.DominioIdioma" Multiplicity="*" />
+        <Association Name="FK__DominioId__Domin__403A8C7D">
+          <End Role="Atestado" Type="Self.Atestado" Multiplicity="1" />
+          <End Role="DominioIdioma" Type="Self.DominioIdioma" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Atestado">
               <PropertyRef Name="AtestadoID" />
             </Principal>
             <Dependent Role="DominioIdioma">
+              <PropertyRef Name="DominioIdiomaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Fecha__FechaID__38996AB5">
+          <End Role="Atestado" Type="Self.Atestado" Multiplicity="1" />
+          <End Role="Fecha" Type="Self.Fecha" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Atestado">
               <PropertyRef Name="AtestadoID" />
+            </Principal>
+            <Dependent Role="Fecha">
+              <PropertyRef Name="FechaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InfoEdito__InfoE__3B75D760">
+          <End Role="Atestado" Type="Self.Atestado" Multiplicity="1" />
+          <End Role="InfoEditorial" Type="Self.InfoEditorial" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Atestado">
+              <PropertyRef Name="AtestadoID" />
+            </Principal>
+            <Dependent Role="InfoEditorial">
+              <PropertyRef Name="InfoEditorialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,7 +549,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DominioId__Idiom__3E52440B">
+        <Association Name="FK__DominioId__Idiom__412EB0B6">
           <End Role="Idioma" Type="Self.Idioma" Multiplicity="0..1" />
           <End Role="DominioIdioma" Type="Self.DominioIdioma" Multiplicity="*" />
           <ReferentialConstraint>
@@ -495,6 +585,10 @@
           <EntitySet Name="Persona" EntityType="Self.Persona" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" />
           <EntitySet Name="TipoRubro" EntityType="Self.TipoRubro" />
+          <AssociationSet Name="FK__Archivo__Atestad__35BCFE0A" Association="Self.FK__Archivo__Atestad__35BCFE0A">
+            <End Role="Atestado" EntitySet="Atestado" />
+            <End Role="Archivo" EntitySet="Archivo" />
+          </AssociationSet>
           <AssociationSet Name="FK__Atestado__PaisID__2D27B809" Association="Self.FK__Atestado__PaisID__2D27B809">
             <End Role="Pais" EntitySet="Pais" />
             <End Role="Atestado" EntitySet="Atestado" />
@@ -511,15 +605,23 @@
             <End Role="Atestado" EntitySet="Atestado" />
             <End Role="AtestadoXPersona" EntitySet="AtestadoXPersona" />
           </AssociationSet>
-          <AssociationSet Name="FK__DominioId__Atest__3D5E1FD2" Association="Self.FK__DominioId__Atest__3D5E1FD2">
+          <AssociationSet Name="FK__DominioId__Domin__403A8C7D" Association="Self.FK__DominioId__Domin__403A8C7D">
             <End Role="Atestado" EntitySet="Atestado" />
             <End Role="DominioIdioma" EntitySet="DominioIdioma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Fecha__FechaID__38996AB5" Association="Self.FK__Fecha__FechaID__38996AB5">
+            <End Role="Atestado" EntitySet="Atestado" />
+            <End Role="Fecha" EntitySet="Fecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InfoEdito__InfoE__3B75D760" Association="Self.FK__InfoEdito__InfoE__3B75D760">
+            <End Role="Atestado" EntitySet="Atestado" />
+            <End Role="InfoEditorial" EntitySet="InfoEditorial" />
           </AssociationSet>
           <AssociationSet Name="FK__AtestadoX__Perso__32E0915F" Association="Self.FK__AtestadoX__Perso__32E0915F">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="AtestadoXPersona" EntitySet="AtestadoXPersona" />
           </AssociationSet>
-          <AssociationSet Name="FK__DominioId__Idiom__3E52440B" Association="Self.FK__DominioId__Idiom__3E52440B">
+          <AssociationSet Name="FK__DominioId__Idiom__412EB0B6" Association="Self.FK__DominioId__Idiom__412EB0B6">
             <End Role="Idioma" EntitySet="Idioma" />
             <End Role="DominioIdioma" EntitySet="DominioIdioma" />
           </AssociationSet>
@@ -542,6 +644,7 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Datos" ColumnName="Datos" />
                 <ScalarProperty Name="TipoArchivo" ColumnName="TipoArchivo" />
+                <ScalarProperty Name="AtestadoID" ColumnName="AtestadoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -579,7 +682,6 @@
             <EntityTypeMapping TypeName="AtestadosModel.DominioIdioma">
               <MappingFragment StoreEntitySet="DominioIdioma">
                 <ScalarProperty Name="DominioIdiomaID" ColumnName="DominioIdiomaID" />
-                <ScalarProperty Name="AtestadoID" ColumnName="AtestadoID" />
                 <ScalarProperty Name="IdiomaID" ColumnName="IdiomaID" />
                 <ScalarProperty Name="Lectura" ColumnName="Lectura" />
                 <ScalarProperty Name="Escrito" ColumnName="Escrito" />

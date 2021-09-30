@@ -17,8 +17,8 @@ namespace Atestados.Datos.Modelo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Atestado()
         {
+            this.Archivo = new HashSet<Archivo>();
             this.AtestadoXPersona = new HashSet<AtestadoXPersona>();
-            this.DominioIdioma = new HashSet<DominioIdioma>();
         }
     
         public int AtestadoID { get; set; }
@@ -36,12 +36,15 @@ namespace Atestados.Datos.Modelo
         public Nullable<int> PersonaID { get; set; }
         public Nullable<int> RubroID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Archivo> Archivo { get; set; }
         public virtual Pais Pais { get; set; }
         public virtual Persona Persona { get; set; }
         public virtual Rubro Rubro { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AtestadoXPersona> AtestadoXPersona { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DominioIdioma> DominioIdioma { get; set; }
+        public virtual DominioIdioma DominioIdioma { get; set; }
+        public virtual Fecha Fecha { get; set; }
+        public virtual InfoEditorial InfoEditorial { get; set; }
     }
 }

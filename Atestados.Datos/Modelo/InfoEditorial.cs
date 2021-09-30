@@ -17,5 +17,7 @@ namespace Atestados.Datos.Modelo
         public int InfoEditorialID { get; set; }
         public string Editorial { get; set; }
         public string Website { get; set; }
+    
+        public virtual Atestado Atestado { get; set; }
     }
 }

@@ -145,5 +145,17 @@ namespace Atestados.Negocios.Negocios
 
 
         #endregion
+
+        #region pais
+        public List<RubroDTO> CargarPais() {
+            //var config = new MapperConfiguration(cfg => cfg.Create)
+
+            List<Rubro> listaRubro = db.Rubro.ToList();
+
+            List<RubroDTO> listaRubrosDto = AutoMapper.Mapper.Map<List<Rubro>, List<RubroDTO>>(listaRubro);
+
+            return listaRubrosDto;
+        }
+        #endregion
     }
 }

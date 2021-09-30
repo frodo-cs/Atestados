@@ -41,6 +41,13 @@ namespace Atestados.Objetos
                     opt => opt.MapFrom(src => src.TipoRubro1.Nombre))
                 .ForMember(dest => dest.Descripcion,
                     opt => opt.MapFrom(src => src.Descripcion));
+
+                config.CreateMap<Pais, PaisDTO>()
+                .ForMember(dest => dest.PaisID,
+                    opt => opt.MapFrom(src => src.PaisID))
+                .ForMember(dest => dest.Nombre,
+                    opt => opt.MapFrom(src => src.Nombre));
+
             });
         }
     }

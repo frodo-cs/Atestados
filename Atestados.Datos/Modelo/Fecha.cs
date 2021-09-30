@@ -17,5 +17,7 @@ namespace Atestados.Datos.Modelo
         public int FechaID { get; set; }
         public Nullable<System.DateTime> FechaInicio { get; set; }
         public Nullable<System.DateTime> FechaFinal { get; set; }
+    
+        public virtual Atestado Atestado { get; set; }
     }
 }

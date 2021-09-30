@@ -15,7 +15,6 @@ namespace Atestados.Datos.Modelo
     public partial class DominioIdioma
     {
         public int DominioIdiomaID { get; set; }
-        public Nullable<int> AtestadoID { get; set; }
         public Nullable<int> IdiomaID { get; set; }
         public int Lectura { get; set; }
         public int Escrito { get; set; }
