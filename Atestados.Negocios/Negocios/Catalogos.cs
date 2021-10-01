@@ -146,16 +146,138 @@ namespace Atestados.Negocios.Negocios
 
         #endregion
 
-        #region pais
-        public List<RubroDTO> CargarPais() {
+        #region Pais
+
+        public List<PaisDTO> CargarPaises()
+        {
             //var config = new MapperConfiguration(cfg => cfg.Create)
 
-            List<Rubro> listaRubro = db.Rubro.ToList();
+            List<Pais> listaPais = db.Pais.ToList();
 
-            List<RubroDTO> listaRubrosDto = AutoMapper.Mapper.Map<List<Rubro>, List<RubroDTO>>(listaRubro);
+            List<PaisDTO> listaPaissDto = AutoMapper.Mapper.Map<List<Pais>, List<PaisDTO>>(listaPais);
 
-            return listaRubrosDto;
+            return listaPaissDto;
         }
+
+        public PaisDTO CargarPais(int? id)
+        {
+            Pais pais = db.Pais.Find(id);
+
+            if (pais == null)
+                return null;
+
+            PaisDTO paisDto = AutoMapper.Mapper.Map<Pais, PaisDTO>(pais);
+            return paisDto;
+        }
+
+        public Pais CargarPaisParaEditar(int? id)
+        {
+            Pais pais = db.Pais.Find(id);
+
+            if (pais == null)
+                return null;
+
+            return pais;
+
+        }
+
+        public Pais CargarPaisParaBorrar(int? id)
+        {
+            Pais pais = db.Pais.Find(id);
+
+            if (pais == null)
+                return null;
+
+            return pais;
+
+        }
+
+        public void GuardarPais(Pais pais)
+        {
+            db.Pais.Add(pais);
+            db.SaveChanges();
+        }
+
+        public void EditarPais(Pais pais)
+        {
+            db.Entry(pais).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void BorrarPais(int id)
+        {
+            Pais pais = db.Pais.Find(id);
+            db.Pais.Remove(pais);
+            db.SaveChanges();
+        }
+
+        #endregion
+
+        #region Idioma
+        public List<IdiomaDTO> CargarIdiomas()
+        {
+            //var config = new MapperConfiguration(cfg => cfg.Create)
+
+            List<Idioma> listaIdioma = db.Idioma.ToList();
+
+            List<IdiomaDTO> listaIdiomasDto = AutoMapper.Mapper.Map<List<Idioma>, List<IdiomaDTO>>(listaIdioma);
+
+            return listaIdiomasDto;
+        }
+
+        public IdiomaDTO CargarIdioma(int? id)
+        {
+            Idioma idioma = db.Idioma.Find(id);
+
+            if (idioma == null)
+                return null;
+
+            IdiomaDTO idiomaDto = AutoMapper.Mapper.Map<Idioma, IdiomaDTO>(idioma);
+            return idiomaDto;
+        }
+
+        public Idioma CargarIdiomaParaEditar(int? id)
+        {
+            Idioma idioma = db.Idioma.Find(id);
+
+            if (idioma == null)
+                return null;
+
+            return idioma;
+
+        }
+
+        public Idioma CargarIdiomaParaBorrar(int? id)
+        {
+            Idioma idioma = db.Idioma.Find(id);
+
+            if (idioma == null)
+                return null;
+
+            return idioma;
+
+        }
+
+        public void GuardarIdioma(Idioma idioma)
+        {
+            db.Idioma.Add(idioma);
+            db.SaveChanges();
+        }
+
+        public void EditarIdioma(Idioma idioma)
+        {
+            db.Entry(idioma).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void BorrarIdioma(int id)
+        {
+            Idioma idioma = db.Idioma.Find(id);
+            db.Idioma.Remove(idioma);
+            db.SaveChanges();
+        }
+
+
         #endregion
     }
 }

@@ -48,6 +48,12 @@ namespace Atestados.Objetos
                 .ForMember(dest => dest.Nombre,
                     opt => opt.MapFrom(src => src.Nombre));
 
+                config.CreateMap<Idioma, IdiomaDTO>()
+                .ForMember(dest => dest.IdiomaID,
+                    opt => opt.MapFrom(src => src.IdiomaID))
+                .ForMember(dest => dest.Nombre,
+                    opt => opt.MapFrom(src => src.Nombre));
+
             });
         }
     }

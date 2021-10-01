@@ -69,7 +69,7 @@
             <PropertyRef Name="IdiomaID" />
           </Key>
           <Property Name="IdiomaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="InfoEditorial">
           <Key>
@@ -387,7 +387,7 @@
             <PropertyRef Name="IdiomaID" />
           </Key>
           <Property Name="IdiomaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="DominioIdioma" Relationship="Self.FK__DominioId__Idiom__412EB0B6" FromRole="Idioma" ToRole="DominioIdioma" />
         </EntityType>
         <EntityType Name="InfoEditorial">
