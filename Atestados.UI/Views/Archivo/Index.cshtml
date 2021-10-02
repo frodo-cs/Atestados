@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Atestados.Objetos.Dtos.ArchivoDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Obligatorio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoArchivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Atestado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Obligatorio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoArchivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Atestado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ArchivoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ArchivoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ArchivoID })
+        </td>
+    </tr>
+}
+
+</table>

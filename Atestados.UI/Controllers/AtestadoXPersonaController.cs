@@ -12,105 +12,113 @@ using Atestados.Objetos.Dtos;
 
 namespace Atestados.UI.Controllers
 {
-    public class IdiomaController : Controller
+    public class AtestadoXPersonaController : Controller
     {
         private AtestadosEntities db = new AtestadosEntities();
-        private Catalogos catalogos = new Catalogos();
+        private InformacionAtestado info = new InformacionAtestado();
 
-        // GET: Idioma
+        // GET: AtestadoXPersona
         public ActionResult Index()
         {
-            return View(catalogos.CargarIdiomas());
+            return View(info.CargarAtestadoXPersonas());
         }
 
-        // GET: Idioma/Details/5
+        // GET: AtestadoXPersona/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IdiomaDTO idioma = catalogos.CargarIdioma(id);
-            if (idioma == null)
+            AtestadoXPersonaDTO atestadoXPersona = info.CargarAtestadoXPersona(id);
+            if (atestadoXPersona == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            return View(atestadoXPersona);
         }
 
-        // GET: Idioma/Create
+        // GET: AtestadoXPersona/Create
         public ActionResult Create()
         {
+            ViewBag.AtestadoID = new SelectList(db.Atestado, "AtestadoID", "Nombre");
+            ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre");
             return View();
         }
 
-        // POST: Idioma/Create
+        // POST: AtestadoXPersona/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdiomaID,Nombre")] Idioma idioma)
+        public ActionResult Create([Bind(Include = "AtestadoID,PersonaID,Porcentaje,Departamento")] AtestadoXPersona atestadoXPersona)
         {
             if (ModelState.IsValid)
             {
-                catalogos.GuardarIdioma(idioma);
+                info.GuardarAtestadoXPersona(atestadoXPersona);
                 return RedirectToAction("Index");
             }
 
-            return View(idioma);
+            ViewBag.AtestadoID = new SelectList(db.Atestado, "AtestadoID", "Nombre", atestadoXPersona.AtestadoID);
+            ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestadoXPersona.PersonaID);
+            return View(atestadoXPersona);
         }
 
-        // GET: Idioma/Edit/5
+        // GET: AtestadoXPersona/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = catalogos.CargarIdiomaParaEditar(id);
-            if (idioma == null)
+            AtestadoXPersona atestadoXPersona = info.CargarAtestadoXPersonaParaEditar(id);
+            if (atestadoXPersona == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            ViewBag.AtestadoID = new SelectList(db.Atestado, "AtestadoID", "Nombre", atestadoXPersona.AtestadoID);
+            ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestadoXPersona.PersonaID);
+            return View(atestadoXPersona);
         }
 
-        // POST: Idioma/Edit/5
+        // POST: AtestadoXPersona/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdiomaID,Nombre")] Idioma idioma)
+        public ActionResult Edit([Bind(Include = "AtestadoID,PersonaID,Porcentaje,Departamento")] AtestadoXPersona atestadoXPersona)
         {
             if (ModelState.IsValid)
             {
-                catalogos.EditarIdioma(idioma);
+                info.EditarAtestadoXPersona(atestadoXPersona);
                 return RedirectToAction("Index");
             }
-            return View(idioma);
+            ViewBag.AtestadoID = new SelectList(db.Atestado, "AtestadoID", "Nombre", atestadoXPersona.AtestadoID);
+            ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestadoXPersona.PersonaID);
+            return View(atestadoXPersona);
         }
 
-        // GET: Idioma/Delete/5
+        // GET: AtestadoXPersona/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = catalogos.CargarIdiomaParaBorrar(id);
-            if (idioma == null)
+            AtestadoXPersona atestadoXPersona = info.CargarAtestadoXPersonaParaBorrar(id);
+            if (atestadoXPersona == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            return View(atestadoXPersona);
         }
 
-        // POST: Idioma/Delete/5
+        // POST: AtestadoXPersona/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            catalogos.BorrarIdioma(id);
+            info.BorrarAtestadoXPersona(id);
             return RedirectToAction("Index");
         }
 

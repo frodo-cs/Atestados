@@ -1,0 +1,42 @@
+﻿@model Atestados.Objetos.Dtos.InfoEditorialDTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InfoEditorial</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Editorial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editorial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Website)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Website)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atestado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atestado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InfoEditorialID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

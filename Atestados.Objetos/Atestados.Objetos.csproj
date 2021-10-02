@@ -56,7 +56,13 @@
     <Compile Include="Clases\Configuracion.cs" />
     <Compile Include="Clases\oCredenciales.cs" />
     <Compile Include="Clases\oRespuesta.cs" />
+    <Compile Include="Dtos\ArchivoDTO.cs" />
+    <Compile Include="Dtos\AtestadoDTO.cs" />
+    <Compile Include="Dtos\AtestadoXPersonaDTO.cs" />
+    <Compile Include="Dtos\DominioIdiomaDTO.cs" />
+    <Compile Include="Dtos\FechaDTO.cs" />
     <Compile Include="Dtos\IdiomaDTO.cs" />
+    <Compile Include="Dtos\InfoEditorialDTO.cs" />
     <Compile Include="Dtos\PaisDTO.cs" />
     <Compile Include="Dtos\PersonaDTO.cs" />
     <Compile Include="Dtos\RubroDTO.cs" />

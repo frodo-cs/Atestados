@@ -32,9 +32,9 @@ namespace Atestados.Datos.Modelo
         public string Lugar { get; set; }
         public string CatalogoTipo { get; set; }
         public string Enlace { get; set; }
-        public Nullable<int> PaisID { get; set; }
-        public Nullable<int> PersonaID { get; set; }
-        public Nullable<int> RubroID { get; set; }
+        public int PaisID { get; set; }
+        public int PersonaID { get; set; }
+        public int RubroID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Archivo> Archivo { get; set; }

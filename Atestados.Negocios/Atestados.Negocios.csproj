@@ -63,7 +63,8 @@
   <ItemGroup>
     <Compile Include="Clases\LnConfiguracion.cs" />
     <Compile Include="Negocios\Catalogos.cs" />
-    <Compile Include="Negocios\InformaciónGeneral.cs" />
+    <Compile Include="Negocios\InformacionAtestado.cs" />
+    <Compile Include="Negocios\InformacionGeneral.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

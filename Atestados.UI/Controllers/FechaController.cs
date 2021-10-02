@@ -12,105 +12,109 @@ using Atestados.Objetos.Dtos;
 
 namespace Atestados.UI.Controllers
 {
-    public class IdiomaController : Controller
+    public class FechaController : Controller
     {
         private AtestadosEntities db = new AtestadosEntities();
-        private Catalogos catalogos = new Catalogos();
+        private InformacionAtestado info = new InformacionAtestado();
 
-        // GET: Idioma
+        // GET: Fecha
         public ActionResult Index()
         {
-            return View(catalogos.CargarIdiomas());
+            return View(info.CargarFechas());
         }
 
-        // GET: Idioma/Details/5
+        // GET: Fecha/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IdiomaDTO idioma = catalogos.CargarIdioma(id);
-            if (idioma == null)
+            FechaDTO fecha = info.CargarFecha(id);
+            if (fecha == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            return View(fecha);
         }
 
-        // GET: Idioma/Create
+        // GET: Fecha/Create
         public ActionResult Create()
         {
+            ViewBag.FechaID = new SelectList(db.Atestado, "AtestadoID", "Nombre");
             return View();
         }
 
-        // POST: Idioma/Create
+        // POST: Fecha/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdiomaID,Nombre")] Idioma idioma)
+        public ActionResult Create([Bind(Include = "FechaID,FechaInicio,FechaFinal")] Fecha fecha)
         {
             if (ModelState.IsValid)
             {
-                catalogos.GuardarIdioma(idioma);
+                info.GuardarFecha(fecha);
                 return RedirectToAction("Index");
             }
 
-            return View(idioma);
+            ViewBag.FechaID = new SelectList(db.Atestado, "AtestadoID", "Nombre", fecha.FechaID);
+            return View(fecha);
         }
 
-        // GET: Idioma/Edit/5
+        // GET: Fecha/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = catalogos.CargarIdiomaParaEditar(id);
-            if (idioma == null)
+            Fecha fecha = info.CargarFechaParaEditar(id);
+            if (fecha == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            ViewBag.FechaID = new SelectList(db.Atestado, "AtestadoID", "Nombre", fecha.FechaID);
+            return View(fecha);
         }
 
-        // POST: Idioma/Edit/5
+        // POST: Fecha/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdiomaID,Nombre")] Idioma idioma)
+        public ActionResult Edit([Bind(Include = "FechaID,FechaInicio,FechaFinal")] Fecha fecha)
         {
             if (ModelState.IsValid)
             {
-                catalogos.EditarIdioma(idioma);
+                info.EditarFecha(fecha);
                 return RedirectToAction("Index");
             }
-            return View(idioma);
+            ViewBag.FechaID = new SelectList(db.Atestado, "AtestadoID", "Nombre", fecha.FechaID);
+            return View(fecha);
         }
 
-        // GET: Idioma/Delete/5
+        // GET: Fecha/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = catalogos.CargarIdiomaParaBorrar(id);
-            if (idioma == null)
+            Fecha fecha = info.CargarFechaParaBorrar(id);
+            if (fecha == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            return View(fecha);
         }
 
-        // POST: Idioma/Delete/5
+        // POST: Fecha/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            catalogos.BorrarIdioma(id);
+            info.BorrarFecha(id);
             return RedirectToAction("Index");
         }
 

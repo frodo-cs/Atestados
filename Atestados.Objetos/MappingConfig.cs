@@ -54,6 +54,101 @@ namespace Atestados.Objetos
                 .ForMember(dest => dest.Nombre,
                     opt => opt.MapFrom(src => src.Nombre));
 
+                config.CreateMap<Fecha, FechaDTO>()
+                .ForMember(dest => dest.FechaID,
+                    opt => opt.MapFrom(src => src.FechaID))
+                .ForMember(dest => dest.FechaInicio,
+                    opt => opt.MapFrom(src => src.FechaInicio))
+                .ForMember(dest => dest.FechaFinal,
+                    opt => opt.MapFrom(src => src.FechaFinal))
+                .ForMember(dest => dest.Atestado,
+                    opt => opt.MapFrom(src => src.Atestado.Nombre));
+
+                config.CreateMap<InfoEditorial, InfoEditorialDTO>()
+                .ForMember(dest => dest.InfoEditorialID,
+                    opt => opt.MapFrom(src => src.InfoEditorialID))
+                .ForMember(dest => dest.Editorial,
+                    opt => opt.MapFrom(src => src.Editorial))
+                .ForMember(dest => dest.Website,
+                    opt => opt.MapFrom(src => src.Website))
+                .ForMember(dest => dest.Atestado,
+                    opt => opt.MapFrom(src => src.Atestado.Nombre));
+
+                config.CreateMap<DominioIdioma, DominioIdiomaDTO>()
+                .ForMember(dest => dest.DominioIdiomaID,
+                    opt => opt.MapFrom(src => src.DominioIdiomaID))
+                .ForMember(dest => dest.Idioma,
+                    opt => opt.MapFrom(src => src.Idioma.Nombre))
+                .ForMember(dest => dest.Auditiva,
+                    opt => opt.MapFrom(src => src.Auditiva))
+                .ForMember(dest => dest.Escrito,
+                    opt => opt.MapFrom(src => src.Escrito))
+                .ForMember(dest => dest.Oral,
+                    opt => opt.MapFrom(src => src.Oral))
+                .ForMember(dest => dest.Lectura,
+                        opt => opt.MapFrom(src => src.Lectura))
+                .ForMember(dest => dest.Atestado,
+                        opt => opt.MapFrom(src => src.Atestado.Nombre));
+
+                config.CreateMap<Archivo, ArchivoDTO>()
+                .ForMember(dest => dest.ArchivoID,
+                    opt => opt.MapFrom(src => src.ArchivoID))
+                .ForMember(dest => dest.Nombre,
+                    opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.Obligatorio,
+                    opt => opt.MapFrom(src => Convert.ToBoolean(src.Obligatorio)))
+                .ForMember(dest => dest.Datos,
+                    opt => opt.MapFrom(src => src.Datos))
+                .ForMember(dest => dest.Atestado,
+                    opt => opt.MapFrom(src => src.Atestado.Nombre))
+                .ForMember(dest => dest.TipoArchivo,
+                    opt => opt.MapFrom(src => src.TipoArchivo));
+
+                config.CreateMap<AtestadoXPersona, AtestadoXPersonaDTO>()
+                .ForMember(dest => dest.AtestadoID,
+                    opt => opt.MapFrom(src => src.AtestadoID))
+                .ForMember(dest => dest.PersonaID,
+                    opt => opt.MapFrom(src => src.PersonaID))
+                .ForMember(dest => dest.Porcentaje,
+                    opt => opt.MapFrom(src => src.Porcentaje))
+                .ForMember(dest => dest.Departamento,
+                    opt => opt.MapFrom(src => src.Departamento))
+                .ForMember(dest => dest.Atestado,
+                    opt => opt.MapFrom(src => src.Atestado.Nombre))
+                .ForMember(dest => dest.Persona,
+                    opt => opt.MapFrom(src => String.Format("{0} {1} {2}", src.Persona.Nombre, src.Persona.PrimerApellido, src.Persona.SegundoApellido)));
+
+
+                config.CreateMap<Atestado, AtestadoDTO>()
+                .ForMember(dest => dest.AtestadoID,
+                    opt => opt.MapFrom(src => src.AtestadoID))
+                .ForMember(dest => dest.Nombre,
+                    opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.CantidadHoras,
+                    opt => opt.MapFrom(src => src.CantidadHoras))
+                .ForMember(dest => dest.CatalogoTipo,
+                    opt => opt.MapFrom(src => src.CatalogoTipo))
+                .ForMember(dest => dest.Descargado,
+                    opt => opt.MapFrom(src => src.Descargado))
+                .ForMember(dest => dest.Enlace,
+                    opt => opt.MapFrom(src => src.Enlace))
+                .ForMember(dest => dest.Enviado,
+                    opt => opt.MapFrom(src => src.Enviado))
+                .ForMember(dest => dest.NumeroAutores,
+                    opt => opt.MapFrom(src => src.NumeroAutores))
+                .ForMember(dest => dest.Observaciones,
+                    opt => opt.MapFrom(src => src.Observaciones))
+                .ForMember(dest => dest.HoraCreacion,
+                    opt => opt.MapFrom(src => src.HoraCreacion))
+                .ForMember(dest => dest.Lugar,
+                    opt => opt.MapFrom(src => src.Lugar))
+                .ForMember(dest => dest.Pais,
+                    opt => opt.MapFrom(src => src.Pais.Nombre))
+                .ForMember(dest => dest.Rubro,
+                    opt => opt.MapFrom(src => src.Rubro.Nombre))
+                .ForMember(dest => dest.Persona,
+                    opt => opt.MapFrom(src => String.Format("{0} {1} {2}", src.Persona.Nombre, src.Persona.PrimerApellido, src.Persona.SegundoApellido)));
+
             });
         }
     }

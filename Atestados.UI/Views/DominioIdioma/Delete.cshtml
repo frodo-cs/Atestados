@@ -1,0 +1,72 @@
+﻿@model Atestados.Datos.Modelo.DominioIdioma
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DominioIdioma</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lectura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lectura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Escrito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Escrito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Auditiva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Auditiva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Oral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Oral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atestado.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atestado.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idioma.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idioma.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

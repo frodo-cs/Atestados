@@ -1,0 +1,121 @@
+﻿@model Atestados.Objetos.Dtos.AtestadoDTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Atestado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroAutores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroAutores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enviado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enviado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descargado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descargado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadHoras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadHoras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lugar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CatalogoTipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatalogoTipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rubro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rubro)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AtestadoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
