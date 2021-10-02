@@ -12,105 +12,109 @@ using Atestados.Objetos.Dtos;
 
 namespace Atestados.UI.Controllers
 {
-    public class IdiomaController : Controller
+    public class ArchivoController : Controller
     {
         private AtestadosEntities db = new AtestadosEntities();
-        private Catalogos catalogos = new Catalogos();
+        private InformacionAtestado info = new InformacionAtestado();
 
-        // GET: Idioma
+        // GET: Archivo
         public ActionResult Index()
         {
-            return View(catalogos.CargarIdiomas());
+            return View(info.CargarArchivos());
         }
 
-        // GET: Idioma/Details/5
+        // GET: Archivo/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IdiomaDTO idioma = catalogos.CargarIdioma(id);
-            if (idioma == null)
+            ArchivoDTO archivo = info.CargarArchivo(id);
+            if (archivo == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            return View(archivo);
         }
 
-        // GET: Idioma/Create
+        // GET: Archivo/Create
         public ActionResult Create()
         {
+            ViewBag.AtestadoID = new SelectList(db.Atestado, "AtestadoID", "Nombre");
             return View();
         }
 
-        // POST: Idioma/Create
+        // POST: Archivo/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdiomaID,Nombre")] Idioma idioma)
+        public ActionResult Create([Bind(Include = "ArchivoID,Obligatorio,Nombre,Datos,TipoArchivo,AtestadoID")] Archivo archivo)
         {
             if (ModelState.IsValid)
             {
-                catalogos.GuardarIdioma(idioma);
+                info.GuardarArchivo(archivo);
                 return RedirectToAction("Index");
             }
 
-            return View(idioma);
+            ViewBag.AtestadoID = new SelectList(db.Atestado, "AtestadoID", "Nombre", archivo.AtestadoID);
+            return View(archivo);
         }
 
-        // GET: Idioma/Edit/5
+        // GET: Archivo/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = catalogos.CargarIdiomaParaEditar(id);
-            if (idioma == null)
+            Archivo archivo = info.CargarArchivoParaEditar(id);
+            if (archivo == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            ViewBag.AtestadoID = new SelectList(db.Atestado, "AtestadoID", "Nombre", archivo.AtestadoID);
+            return View(archivo);
         }
 
-        // POST: Idioma/Edit/5
+        // POST: Archivo/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdiomaID,Nombre")] Idioma idioma)
+        public ActionResult Edit([Bind(Include = "ArchivoID,Obligatorio,Nombre,Datos,TipoArchivo,AtestadoID")] Archivo archivo)
         {
             if (ModelState.IsValid)
             {
-                catalogos.EditarIdioma(idioma);
+                info.EditarArchivo(archivo);
                 return RedirectToAction("Index");
             }
-            return View(idioma);
+            ViewBag.AtestadoID = new SelectList(db.Atestado, "AtestadoID", "Nombre", archivo.AtestadoID);
+            return View(archivo);
         }
 
-        // GET: Idioma/Delete/5
+        // GET: Archivo/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = catalogos.CargarIdiomaParaBorrar(id);
-            if (idioma == null)
+            Archivo archivo = info.CargarArchivoParaBorrar(id);
+            if (archivo == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            return View(archivo);
         }
 
-        // POST: Idioma/Delete/5
+        // POST: Archivo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            catalogos.BorrarIdioma(id);
+            info.BorrarArchivo(id);
             return RedirectToAction("Index");
         }
 

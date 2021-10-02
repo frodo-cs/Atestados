@@ -15,7 +15,7 @@ namespace Atestados.UI.Controllers
     {
         private AtestadosEntities db = new AtestadosEntities();
 
-        InformaciónGeneral información = new InformaciónGeneral();
+        InformacionGeneral información = new InformacionGeneral();
 
         // GET: Personas
         public ActionResult Index()

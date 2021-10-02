@@ -11,11 +11,11 @@ using AutoMapper;
 
 namespace Atestados.Negocios.Negocios
 {
-    public class InformaciónGeneral
+    public class InformacionGeneral
     {
         private AtestadosEntities db = new AtestadosEntities();
 
-        
+        #region Persona
         public PersonaDTO CargarPersona(int? id)
         {
             Persona persona = db.Persona.Find(id);
@@ -53,7 +53,6 @@ namespace Atestados.Negocios.Negocios
 
         public List<PersonaDTO> CargarPersonas()
         {
-            //var config = new MapperConfiguration(cfg => cfg.Create)
 
             List<Persona> listaPersona = db.Persona.ToList();
 
@@ -81,5 +80,6 @@ namespace Atestados.Negocios.Negocios
             db.Persona.Remove(persona);
             db.SaveChanges();
         }
+        #endregion
     }
 }

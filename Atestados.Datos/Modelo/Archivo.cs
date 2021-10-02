@@ -19,7 +19,7 @@ namespace Atestados.Datos.Modelo
         public string Nombre { get; set; }
         public byte[] Datos { get; set; }
         public string TipoArchivo { get; set; }
-        public Nullable<int> AtestadoID { get; set; }
+        public int AtestadoID { get; set; }
     
         public virtual Atestado Atestado { get; set; }
     }

@@ -1,0 +1,66 @@
+﻿@model Atestados.Objetos.Dtos.DominioIdiomaDTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DominioIdioma</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lectura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lectura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Escrito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Escrito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Auditiva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Auditiva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Oral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Oral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atestado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atestado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idioma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idioma)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DominioIdiomaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

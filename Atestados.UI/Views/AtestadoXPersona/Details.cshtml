@@ -1,0 +1,50 @@
+﻿@model Atestados.Objetos.Dtos.AtestadoXPersonaDTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AtestadoXPersona</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Porcentaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Porcentaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atestado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atestado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

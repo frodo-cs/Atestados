@@ -12,105 +12,109 @@ using Atestados.Objetos.Dtos;
 
 namespace Atestados.UI.Controllers
 {
-    public class IdiomaController : Controller
+    public class InfoEditorialController : Controller
     {
         private AtestadosEntities db = new AtestadosEntities();
-        private Catalogos catalogos = new Catalogos();
+        private InformacionAtestado info = new InformacionAtestado();
 
-        // GET: Idioma
+        // GET: InfoEditorial
         public ActionResult Index()
         {
-            return View(catalogos.CargarIdiomas());
+            return View(info.CargarInfoEditoriales());
         }
 
-        // GET: Idioma/Details/5
+        // GET: InfoEditorial/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IdiomaDTO idioma = catalogos.CargarIdioma(id);
-            if (idioma == null)
+            InfoEditorialDTO infoEditorial = info.CargarInfoEditorial(id);
+            if (infoEditorial == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            return View(infoEditorial);
         }
 
-        // GET: Idioma/Create
+        // GET: InfoEditorial/Create
         public ActionResult Create()
         {
+            ViewBag.InfoEditorialID = new SelectList(db.Atestado, "AtestadoID", "Nombre");
             return View();
         }
 
-        // POST: Idioma/Create
+        // POST: InfoEditorial/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdiomaID,Nombre")] Idioma idioma)
+        public ActionResult Create([Bind(Include = "InfoEditorialID,Editorial,Website")] InfoEditorial infoEditorial)
         {
             if (ModelState.IsValid)
             {
-                catalogos.GuardarIdioma(idioma);
+                info.GuardarInfoEditorial(infoEditorial);
                 return RedirectToAction("Index");
             }
 
-            return View(idioma);
+            ViewBag.InfoEditorialID = new SelectList(db.Atestado, "AtestadoID", "Nombre", infoEditorial.InfoEditorialID);
+            return View(infoEditorial);
         }
 
-        // GET: Idioma/Edit/5
+        // GET: InfoEditorial/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = catalogos.CargarIdiomaParaEditar(id);
-            if (idioma == null)
+            InfoEditorial infoEditorial = info.CargarInfoEditorialParaEditar(id);
+            if (infoEditorial == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            ViewBag.InfoEditorialID = new SelectList(db.Atestado, "AtestadoID", "Nombre", infoEditorial.InfoEditorialID);
+            return View(infoEditorial);
         }
 
-        // POST: Idioma/Edit/5
+        // POST: InfoEditorial/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdiomaID,Nombre")] Idioma idioma)
+        public ActionResult Edit([Bind(Include = "InfoEditorialID,Editorial,Website")] InfoEditorial infoEditorial)
         {
             if (ModelState.IsValid)
             {
-                catalogos.EditarIdioma(idioma);
+                info.EditarInfoEditorial(infoEditorial);
                 return RedirectToAction("Index");
             }
-            return View(idioma);
+            ViewBag.InfoEditorialID = new SelectList(db.Atestado, "AtestadoID", "Nombre", infoEditorial.InfoEditorialID);
+            return View(infoEditorial);
         }
 
-        // GET: Idioma/Delete/5
+        // GET: InfoEditorial/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = catalogos.CargarIdiomaParaBorrar(id);
-            if (idioma == null)
+            InfoEditorial infoEditorial = info.CargarInfoEditorialParaBorrar(id);
+            if (infoEditorial == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            return View(infoEditorial);
         }
 
-        // POST: Idioma/Delete/5
+        // POST: InfoEditorial/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            catalogos.BorrarIdioma(id);
+            info.BorrarInfoEditorial(id);
             return RedirectToAction("Index");
         }
 
