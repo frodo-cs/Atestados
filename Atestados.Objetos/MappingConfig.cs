@@ -143,11 +143,21 @@ namespace Atestados.Objetos
                 .ForMember(dest => dest.Lugar,
                     opt => opt.MapFrom(src => src.Lugar))
                 .ForMember(dest => dest.Pais,
-                    opt => opt.MapFrom(src => src.Pais.Nombre))
+                    opt => opt.MapFrom(src => src.Pais))
                 .ForMember(dest => dest.Rubro,
-                    opt => opt.MapFrom(src => src.Rubro.Nombre))
+                    opt => opt.MapFrom(src => src.Rubro))
                 .ForMember(dest => dest.Persona,
-                    opt => opt.MapFrom(src => String.Format("{0} {1} {2}", src.Persona.Nombre, src.Persona.PrimerApellido, src.Persona.SegundoApellido)));
+                    opt => opt.MapFrom(src => src.Persona))
+                .ForMember(dest => dest.DominioIdioma,
+                    opt => opt.MapFrom(src => src.DominioIdioma))
+                .ForMember(dest => dest.Archivos,
+                    opt => opt.MapFrom(src => src.Archivo))
+                .ForMember(dest => dest.AtestadoXPersona,
+                    opt => opt.MapFrom(src => src.AtestadoXPersona))
+                .ForMember(dest => dest.Fecha,
+                    opt => opt.MapFrom(src => src.Fecha))
+                .ForMember(dest => dest.InfoEditorial,
+                    opt => opt.MapFrom(src => src.InfoEditorial));
 
             });
         }

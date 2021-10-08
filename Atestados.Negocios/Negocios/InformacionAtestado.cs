@@ -61,6 +61,17 @@ namespace Atestados.Negocios.Negocios
 
         }
 
+        public List<AtestadoDTO> CargarAtestadosDeTipo(int? rubroId)
+        {
+
+            List<Atestado> listaAtestado = db.Atestado.Where(l => l.RubroID == rubroId).ToList();
+
+            List<AtestadoDTO> listaAtestadosDto = AutoMapper.Mapper.Map<List<Atestado>, List<AtestadoDTO>>(listaAtestado);
+
+            return listaAtestadosDto;
+
+        }
+
         public void GuardarAtestado(Atestado atestado)
         {
             db.Atestado.Add(atestado);

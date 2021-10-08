@@ -53,8 +53,9 @@ namespace Atestados.UI.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Login");
-            }
+                //return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Funcionario");
+            } 
         }
 
         public ActionResult Dashboard()
@@ -80,7 +81,8 @@ namespace Atestados.UI.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Login");
+                //return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Funcionario");
             }
         }
 
@@ -134,6 +136,7 @@ namespace Atestados.UI.Controllers
                 respuestaValidacion.MensajeRespuesta = "";
                 return new JsonResult { Data = respuestaValidacion, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
+            
 
         }
 
