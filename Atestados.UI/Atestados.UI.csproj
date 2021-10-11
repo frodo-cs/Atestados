@@ -348,11 +348,11 @@
     <Content Include="Views\Controladores originales\Idioma\Details.cshtml" />
     <Content Include="Views\Controladores originales\Idioma\Edit.cshtml" />
     <Content Include="Views\Controladores originales\Idioma\Index.cshtml" />
-    <Content Include="Views\Controladores originales\Atestado\Create.cshtml" />
-    <Content Include="Views\Controladores originales\Atestado\Delete.cshtml" />
-    <Content Include="Views\Controladores originales\Atestado\Details.cshtml" />
-    <Content Include="Views\Controladores originales\Atestado\Edit.cshtml" />
-    <Content Include="Views\Controladores originales\Atestado\Index.cshtml" />
+    <Content Include="Views\Atestado\Create.cshtml" />
+    <Content Include="Views\Atestado\Delete.cshtml" />
+    <Content Include="Views\Atestado\Details.cshtml" />
+    <Content Include="Views\Atestado\Edit.cshtml" />
+    <Content Include="Views\Atestado\Index.cshtml" />
     <Content Include="Views\Controladores originales\Archivo\Create.cshtml" />
     <Content Include="Views\Controladores originales\Archivo\Delete.cshtml" />
     <Content Include="Views\Controladores originales\Archivo\Details.cshtml" />
@@ -386,9 +386,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
-    <Folder Include="Views\Controladores originales\Libro\" />
-    <Folder Include="Views\CrearAtestados\" />
-    <Folder Include="Views\EditarAtestados\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

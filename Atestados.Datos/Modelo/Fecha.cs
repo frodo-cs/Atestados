@@ -11,7 +11,7 @@ namespace Atestados.Datos.Modelo
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Fecha
     {
         public int FechaID { get; set; }

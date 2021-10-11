@@ -17,10 +17,12 @@ namespace Atestados.UI.Controllers.Atestados
         private AtestadosEntities db = new AtestadosEntities();
         private InformacionAtestado info = new InformacionAtestado();
 
+        private readonly int Libro = 1;
+
         // GET: Libros
         public ActionResult Index()
         {
-            return View(info.CargarAtestadosDeTipo(1));
+            return View(info.CargarAtestadosDeTipo(Libro));
         }
 
         // GET: Libro/Ver
@@ -43,30 +45,28 @@ namespace Atestados.UI.Controllers.Atestados
         {
             ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre");
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre");
-            ViewBag.RubroID = new SelectList(db.Rubro, "RubroID", "Nombre");
-            ViewBag.AtestadoID = new SelectList(db.DominioIdioma, "DominioIdiomaID", "DominioIdiomaID");
             ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID");
-            ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial");
+            ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial");        
             return View();
         }
 
         // POST: Libro/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Crear([Bind(Include = "AtestadoID,Nombre,NumeroAutores,Observaciones,HoraCreacion,Enviado,Descargado,CantidadHoras,Lugar,CatalogoTipo,Enlace,PaisID,PersonaID,RubroID")] Atestado atestado)
+        public ActionResult Crear([Bind(Include = "AtestadoID,Nombre,NumeroAutores,Observaciones,Enlace,PaisID,PersonaID")] Atestado atestado)
         {
             if (ModelState.IsValid)
             {
+                //atestado.Rubro = db.Rubro.Find(Libro);
                 info.GuardarAtestado(atestado);
                 return RedirectToAction("Index");
             }
 
             ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre", atestado.PaisID);
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
-            ViewBag.RubroID = new SelectList(db.Rubro, "RubroID", "Nombre", atestado.RubroID);
-            ViewBag.AtestadoID = new SelectList(db.DominioIdioma, "DominioIdiomaID", "DominioIdiomaID", atestado.AtestadoID);
             ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID", atestado.AtestadoID);
             ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial", atestado.AtestadoID);
+            ViewBag.RubroID = Libro;
             return View(atestado);
         }
 
@@ -84,8 +84,6 @@ namespace Atestados.UI.Controllers.Atestados
             }
             ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre", atestado.PaisID);
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
-            ViewBag.RubroID = new SelectList(db.Rubro, "RubroID", "Nombre", atestado.RubroID);
-            ViewBag.AtestadoID = new SelectList(db.DominioIdioma, "DominioIdiomaID", "DominioIdiomaID", atestado.AtestadoID);
             ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID", atestado.AtestadoID);
             ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial", atestado.AtestadoID);
             return View(atestado);
@@ -96,7 +94,7 @@ namespace Atestados.UI.Controllers.Atestados
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "AtestadoID,Nombre,NumeroAutores,Observaciones,HoraCreacion,Enviado,Descargado,CantidadHoras,Lugar,CatalogoTipo,Enlace,PaisID,PersonaID,RubroID")] Atestado atestado)
+        public ActionResult Editar([Bind(Include = "AtestadoID,Nombre,NumeroAutores,Observaciones,Enlace,PaisID,PersonaID")] Atestado atestado)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +104,6 @@ namespace Atestados.UI.Controllers.Atestados
             ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre", atestado.PaisID);
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
             ViewBag.RubroID = new SelectList(db.Rubro, "RubroID", "Nombre", atestado.RubroID);
-            ViewBag.AtestadoID = new SelectList(db.DominioIdioma, "DominioIdiomaID", "DominioIdiomaID", atestado.AtestadoID);
             ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID", atestado.AtestadoID);
             ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial", atestado.AtestadoID);
             return View(atestado);
