@@ -53,12 +53,17 @@ namespace Atestados.UI.Controllers.Atestados
         // POST: Libro/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Crear([Bind(Include = "AtestadoID,Nombre,NumeroAutores,Observaciones,Enlace,PaisID,PersonaID")] Atestado atestado)
+        public ActionResult Crear([Bind(Include = "Annio,Archivos,AtestadoID,AtestadoXPersona,Editorial,Enlace,HoraCreacion,Nombre,NumeroAutores,Observaciones,PaisID,Persona,PersonaID,RubroID,Website")] LibroDTO atestado)
         {
             if (ModelState.IsValid)
             {
-                //atestado.Rubro = db.Rubro.Find(Libro);
-                info.GuardarAtestado(atestado);
+                Atestado a = AutoMapper.Mapper.Map<LibroDTO, Atestado>(atestado);               
+                info.GuardarAtestado(a);
+                atestado.AtestadoID = a.AtestadoID;
+                InfoEditorial infoEditorial = AutoMapper.Mapper.Map<LibroDTO, InfoEditorial>(atestado);
+                info.GuardarInfoEditorial(infoEditorial);
+                Fecha fecha = AutoMapper.Mapper.Map<LibroDTO, Fecha>(atestado);
+                info.GuardarFecha(fecha);
                 return RedirectToAction("Index");
             }
 
@@ -94,7 +99,7 @@ namespace Atestados.UI.Controllers.Atestados
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "AtestadoID,Nombre,NumeroAutores,Observaciones,Enlace,PaisID,PersonaID")] Atestado atestado)
+        public ActionResult Editar([Bind(Include = "AtestadoID,Nombre,NumeroAutores,Observaciones,HoraCreacion,Enviado,Descargado,CantidadHoras,Lugar,CatalogoTipo,Enlace,PaisID,PersonaID,RubroID")] Atestado atestado)
         {
             if (ModelState.IsValid)
             {
