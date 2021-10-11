@@ -13,7 +13,7 @@
           <Property Name="Obligatorio" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Datos" Type="varbinary(max)" Nullable="false" />
-          <Property Name="TipoArchivo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TipoArchivo" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="AtestadoID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Atestado">
@@ -316,7 +316,7 @@
           <Property Name="Obligatorio" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Datos" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="TipoArchivo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoArchivo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AtestadoID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Atestado" Relationship="Self.FK__Archivo__Atestad__35BCFE0A" FromRole="Archivo" ToRole="Atestado" />
         </EntityType>

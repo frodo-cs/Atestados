@@ -353,10 +353,6 @@
     <Content Include="Views\Atestado\Details.cshtml" />
     <Content Include="Views\Atestado\Edit.cshtml" />
     <Content Include="Views\Atestado\Index.cshtml" />
-    <Content Include="Views\Archivo\Create.cshtml" />
-    <Content Include="Views\Archivo\Delete.cshtml" />
-    <Content Include="Views\Archivo\Details.cshtml" />
-    <Content Include="Views\Archivo\Edit.cshtml" />
     <Content Include="Views\Archivo\Index.cshtml" />
     <Content Include="Views\AtestadoXPersona\Create.cshtml" />
     <Content Include="Views\AtestadoXPersona\Delete.cshtml" />

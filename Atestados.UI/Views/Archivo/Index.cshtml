@@ -9,6 +9,19 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Archivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="postedFile" />
+    <input type="submit" value="Subir Archivo" />
+}
+
+@using (Html.BeginForm("Descargar", "Archivo", FormMethod.Post))
+{
+    <input type="hidden" id="archivoID" name="ArchivoID" />
+    <input type="submit" id="botonDescarga" value="Descargar" style="display:none" />
+}
+
 <table class="table">
     <tr>
         <th>
@@ -21,37 +34,46 @@
             @Html.DisplayNameFor(model => model.Datos)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TipoArchivo)
+            @Html.DisplayNameFor(model => model.Atestado)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Atestado)
+            Descarga
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Obligatorio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Datos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoArchivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Atestado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ArchivoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ArchivoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ArchivoID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Obligatorio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Atestado)
+            </td>
+            <td>
+                <a href="javascript:;" onclick="DescargarArchivo(@item.ArchivoID)">Descargar</a>
+            </td>
+            <td>
+                @* @Html.ActionLink("Edit", "Edit", new { id = item.ArchivoID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ArchivoID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ArchivoID }) *@
+            </td>
+        </tr>
+    }
 
 </table>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function DescargarArchivo(fileId) {
+        $("#archivoID").val(fileId);
+        $("#botonDescarga")[0].click();
+    };
+</script>
