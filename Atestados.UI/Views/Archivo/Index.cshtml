@@ -6,13 +6,9 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 @using (Html.BeginForm("Index", "Archivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <input type="file" name="postedFile" />
+    <input type="file" name="archivo" />
     <input type="submit" value="Subir Archivo" />
 }
 
@@ -34,9 +30,6 @@
             @Html.DisplayNameFor(model => model.Datos)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Atestado)
-        </th>
-        <th>
             Descarga
         </th>
         <th></th>
@@ -53,9 +46,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Datos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Atestado)
             </td>
             <td>
                 <a href="javascript:;" onclick="DescargarArchivo(@item.ArchivoID)">Descargar</a>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 using Atestados.Datos.Modelo;
 using Atestados.Negocios.Negocios;
 using Atestados.Objetos.Dtos;
+using Newtonsoft.Json;
 
 namespace Atestados.UI.Controllers.Atestados
 {
@@ -16,6 +18,7 @@ namespace Atestados.UI.Controllers.Atestados
     {
         private AtestadosEntities db = new AtestadosEntities();
         private InformacionAtestado info = new InformacionAtestado();
+        private List<ArchivoDTO> archivos = new List<ArchivoDTO>();
 
         private readonly int Libro = 1;
 
@@ -43,11 +46,13 @@ namespace Atestados.UI.Controllers.Atestados
         // GET: Libro/Crear
         public ActionResult Crear()
         {
+            LibroDTO libro = new LibroDTO();
+            libro.Archivos = archivos;
             ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre");
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre");
             ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID");
             ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial");        
-            return View();
+            return View(libro);
         }
 
         // POST: Libro/Crear
@@ -138,6 +143,36 @@ namespace Atestados.UI.Controllers.Atestados
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public JsonResult Cargar(HttpPostedFileBase archivo)
+        {
+            byte[] bytes;
+            using (BinaryReader br = new BinaryReader(archivo.InputStream))
+            {
+                bytes = br.ReadBytes(archivo.ContentLength);
+            }
+
+            archivos.Add(new ArchivoDTO
+            {
+                AtestadoID = Libro,
+                Nombre = Path.GetFileName(archivo.FileName),
+                TipoArchivo = archivo.ContentType,
+                Datos = bytes
+            });
+
+            var jsonTest = JsonConvert.SerializeObject(archivos);
+
+            return Json(new {
+                archivosJson = jsonTest
+            });
+        }
+
+        [HttpPost]
+        public FileResult Descargar(int? archivoID)
+        {
+            ArchivoDTO archivo = info.CargarArchivo(archivoID);
+            return File(archivo.Datos, archivo.TipoArchivo, archivo.Nombre);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -99,8 +99,8 @@ namespace Atestados.Objetos
                     opt => opt.MapFrom(src => Convert.ToBoolean(src.Obligatorio)))
                 .ForMember(dest => dest.Datos,
                     opt => opt.MapFrom(src => src.Datos))
-                .ForMember(dest => dest.Atestado,
-                    opt => opt.MapFrom(src => src.Atestado.Nombre))
+                .ForMember(dest => dest.AtestadoID,
+                    opt => opt.MapFrom(src => src.Atestado.AtestadoID))
                 .ForMember(dest => dest.TipoArchivo,
                     opt => opt.MapFrom(src => src.TipoArchivo));
 

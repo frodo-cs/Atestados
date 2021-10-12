@@ -274,6 +274,17 @@ namespace Atestados.Negocios.Negocios
 
         }
 
+        public List<ArchivoDTO> CargarArchivosDeAtestado(int? id)
+        {
+
+            List<Archivo> listaArchivo = db.Archivo.Where(archivo => archivo.AtestadoID == id).ToList();
+
+            List<ArchivoDTO> listaArchivosDto = AutoMapper.Mapper.Map<List<Archivo>, List<ArchivoDTO>>(listaArchivo);
+
+            return listaArchivosDto;
+
+        }
+
         public void GuardarArchivo(Archivo archivo)
         {
             db.Archivo.Add(archivo);

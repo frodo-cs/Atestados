@@ -13,6 +13,6 @@ namespace Atestados.Objetos.Dtos
         public string Nombre { get; set; }
         public byte[] Datos { get; set; }
         public string TipoArchivo { get; set; }
-        public string Atestado { get; set; }
+        public int AtestadoID { get; set; }
     }
 }
