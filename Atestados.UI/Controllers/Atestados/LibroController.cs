@@ -19,6 +19,7 @@ namespace Atestados.UI.Controllers.Atestados
         private AtestadosEntities db = new AtestadosEntities();
         private InformacionAtestado info = new InformacionAtestado();
         private List<ArchivoDTO> archivos = new List<ArchivoDTO>();
+        private List<AutorDTO> autores = new List<AutorDTO>();
 
         private readonly int Libro = 1;
 
@@ -141,6 +142,30 @@ namespace Atestados.UI.Controllers.Atestados
         {
             info.BorrarAtestado(id);
             return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        public JsonResult AgregarAutor(AutorDTO autorData)
+        {
+
+            AutorDTO autor = new AutorDTO()
+            {
+                Nombre = autorData.Nombre,
+                PrimerApellido = autorData.PrimerApellido,
+                SegundoApellido = autorData.SegundoApellido,
+                Porcentaje = autorData.Porcentaje,
+                Email = autorData.Email
+            };
+
+            autores.Add(autor);
+
+            var jsonTest = JsonConvert.SerializeObject(autor);
+
+            return Json(new
+            {
+                personaJson = jsonTest
+            });
         }
 
         [HttpPost]

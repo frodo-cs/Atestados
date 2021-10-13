@@ -10,139 +10,193 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Libro</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NumeroAutores, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NumeroAutores, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NumeroAutores, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Enlace, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Enlace, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Enlace, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Editorial, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Editorial, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Editorial, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Annio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Annio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Annio, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Website, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PaisID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("PaisID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PaisID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PersonaID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("PersonaID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PersonaID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-default" />
-            </div>
+<div class="form-horizontal">
+    <h4>Libro</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumeroAutores, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NumeroAutores, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NumeroAutores, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Enlace, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Enlace, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Enlace, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Editorial, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Editorial, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Editorial, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Annio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Annio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Annio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Website, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PaisID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("PaisID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PaisID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PersonaID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("PersonaID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PersonaID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div class="btn btn-default" onclick="AbrirModal()">Agregar Autores</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
-    <div>
-        <form id="test">
-        
-            <input type="file" name="archivo" />
-            <input type="submit" value="Subir Archivo" />
+<div>
+    <form id="test">
 
-         </form>
-            @using (Html.BeginForm("Descargar", "Libro", FormMethod.Post))
-            {
-                <input type="hidden" id="archivoID" name="ArchivoID" />
-                <input type="submit" id="botonDescarga" value="Descargar" style="display:none" />
-            }
-            <table class="table" id="tablaTest">
-                <tr>
-                    <th>
-                        Nombre
-                    </th>
-                    <th>
-                        Tipo
-                    </th>
-                    <th>
-                        Descarga
-                    </th>
-                    <th></th>
-                </tr>
+        <input type="file" name="archivo" />
+        <input type="submit" value="Subir Archivo" />
 
-                @foreach (var item in Model.Archivos)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TipoArchivo)
-                        </td>
-                        <td>
-                            <a href="javascript:;" onclick="DescargarArchivo(@item.ArchivoID)">Descargar</a>
-                        </td>
-                    </tr>
-                }
+    </form>
+    @using (Html.BeginForm("Descargar", "Libro", FormMethod.Post))
+    {
+        <input type="hidden" id="archivoID" name="ArchivoID" />
+        <input type="submit" id="botonDescarga" value="Descargar" style="display:none" />
+    }
+    <table class="table" id="tablaTest">
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Tipo
+            </th>
+            <th></th>
+        </tr>
 
-            </table>
+    </table>
 </div>
 
 <div>
     @Html.ActionLink("Regresar a la lista", "Index")
 </div>
 
+<div id="autoresModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Agregar Autores</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table" id="tablaAutores">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Porcentaje</th>
+                        <th></th>
+                    </tr>
+                </table>
+ 
+            </div>
+            <div class="modal-footer">
+                <table class="table">
+                    <tr>
+                        <td><input type="text" placeholder="Nombre" id="nombre" /></td>
+                        <td><input type="text" placeholder="Primer apellido" id="apellido1" /></td>
+                        <td><input type="text" placeholder="Segundo apellido" id="apellido2"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Email" id="email" /></td>
+                        <td><input type="number" placeholder="Porcentaje" id="porcentaje" /></td>
+                        <td><button type="button" class="btn btn-default" id="autorAgregar">Agregar</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
+
+    function AbrirModal() {
+        $("#autoresModal").modal()
+    }
+
+    $('#autorAgregar').click(function () {
+        var autor = new Object()
+        autor.Nombre = $('#nombre').val()
+        autor.PrimerApellido = $('#apellido1').val()
+        autor.SegundoApellido = $('#apellido2').val()
+        autor.Email = $('#email').val()
+        autor.Porcentaje = $('#porcentaje').val()
+
+        if (autor != null) {
+            $.ajax({
+                type: 'POST',
+                url: '/Atestados/Libro/AgregarAutor',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(autor),
+                success: function (response) {
+                    var autores = JSON.parse(response.personaJson)
+                    if (response != null) {
+                        $("#tablaAutores").append('<tr><td>' + autores.Nombre + '</td><td>' + autores.Porcentaje + '</td><td>' + "" + '</td></tr>')
+                    }
+                }
+            })
+        }
+    })
+
     function DescargarArchivo(fileId) {
         $("#archivoID").val(fileId);
         $("#botonDescarga")[0].click();
@@ -151,17 +205,22 @@
     $('#test').submit(function (e) {
         e.preventDefault();
 
-        var data = new FormData(this); // <-- 'this' is your form element
+        var data = new FormData(this);
 
         $.ajax({
-            url: 'http://localhost:62999/Atestados/Libro/Cargar',
+            url: '/Atestados/Libro/Cargar',
             data: data,
             cache: false,
             contentType: false,
             processData: false,
             type: 'POST',
             success: function (data) {
-                console.log(JSON.parse(data.archivosJson))
+                var archivos = JSON.parse(data.archivosJson)
+                for (var i = 0; i < archivos.length; i++) {
+                    var row = archivos[i];
+                    $('#tablaTest').append('<tr><td>' + row.Nombre + '</td><td>' + row.TipoArchivo + '</td></tr>');
+
+                }
             }
         })
 

@@ -192,6 +192,8 @@ namespace Atestados.Objetos
                    opt => opt.MapFrom(src => src.Enlace))
                .ForMember(dest => dest.PaisID,
                    opt => opt.MapFrom(src => src.PaisID))
+               .ForMember(dest => dest.Pais,
+                   opt => opt.MapFrom(src => src.Pais))
                .ForMember(dest => dest.Observaciones,
                    opt => opt.MapFrom(src => src.Observaciones))
                .ForMember(dest => dest.Persona,
@@ -215,6 +217,27 @@ namespace Atestados.Objetos
                 .ForMember(dest => dest.FechaFinal,
                     opt => opt.MapFrom(src => src.Annio));
 
+                config.CreateMap<Persona, AutorDTO>()
+                .ForMember(dest => dest.PersonaID,
+                    opt => opt.MapFrom(src => src.PersonaID))
+                .ForMember(dest => dest.Nombre,
+                    opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.PrimerApellido,
+                    opt => opt.MapFrom(src => src.PrimerApellido))
+                .ForMember(dest => dest.SegundoApellido,
+                    opt => opt.MapFrom(src => src.SegundoApellido))
+                .ForMember(dest => dest.Email,
+                    opt => opt.MapFrom(src => src.Email));
+
+                config.CreateMap<AtestadoXPersona, AutorDTO>()
+                .ForMember(dest => dest.AtestadoID,
+                    opt => opt.MapFrom(src => src.AtestadoID))
+                .ForMember(dest => dest.PersonaID,
+                    opt => opt.MapFrom(src => src.PersonaID))
+                .ForMember(dest => dest.Porcentaje,
+                    opt => opt.MapFrom(src => src.Porcentaje))
+                .ForMember(dest => dest.Departamento,
+                    opt => opt.MapFrom(src => src.Departamento));
 
             });
         }

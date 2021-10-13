@@ -10,7 +10,7 @@ namespace Atestados.Objetos.Dtos
     {
         public int AtestadoID { get; set; }
         public int PersonaID { get; set; }
-        public Nullable<double> Porcentaje { get; set; }
+        public double Porcentaje { get; set; }
         public string Departamento { get; set; }
         public virtual string Atestado { get; set; }
         public virtual string Persona { get; set; }

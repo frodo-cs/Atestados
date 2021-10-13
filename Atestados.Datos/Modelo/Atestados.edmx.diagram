@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="761568ae83094510bc96e627ba686e8e" Name="Diagram1">
+      <Diagram DiagramId="3fea1b92ca8c495a972a872d817d907c" Name="Diagram1">
         <EntityTypeShape EntityType="AtestadosModel.Archivo" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="AtestadosModel.Atestado" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AtestadosModel.AtestadoXPersona" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />

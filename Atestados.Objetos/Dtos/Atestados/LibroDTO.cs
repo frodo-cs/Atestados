@@ -25,6 +25,7 @@ namespace Atestados.Objetos.Dtos
         public DateTime Annio { get; set; }
         [DisplayName("País")]
         public int PaisID { get; set; }
+        public Pais Pais { get; set; }
         public Persona Persona { get; set; }
         public int RubroID { get; set; }
         [DisplayName("Persona")]
