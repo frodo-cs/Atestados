@@ -6,10 +6,26 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+<form id="cargaArhivo">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="file" class="btn btn-default" id="archivo" name="archivo"/>
+    </div>
+</form>
+
+
+
+<div class="col-md-offset-2 col-md-10">
+    <input type="button" class="btn btn-default" value="Subir Archivo" id="cargar"/>
+</div>
+
+@using (Html.BeginForm("Descargar", "Archivo", FormMethod.Post))
+{
+    <input type="hidden" id="archivoID" name="ArchivoID" />
+    <input type="submit" id="botonDescarga" value="Descargar" style="display:none" />
+}
+
+<table class="table" id="tablaArchivos">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Obligatorio)
@@ -21,37 +37,38 @@
             @Html.DisplayNameFor(model => model.Datos)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TipoArchivo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Atestado)
+            Descarga
         </th>
         <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Obligatorio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Datos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoArchivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Atestado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ArchivoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ArchivoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ArchivoID })
-        </td>
     </tr>
 }
 
 </table>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function DescargarArchivo(fileId) {
+        $("#archivoID").val(fileId);
+        $("#botonDescarga")[0].click();
+    };
+
+    $("#archivo").on('change', function () {
+
+        var data = new FormData($('#cargaArchivo').get(0));
+        console.log($('#cargaArchivo')[0])
+        $.ajax({
+            url: '/Atestados/Archivo/Index',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function (data) {
+                var archivo = JSON.parse(data.archivoJson)
+                if (data != null) {
+                    $("#tablaArchivos").append('<tr><td>' + archivo.Nombre + '</td><td>' + archivo.TipoArchivo + '</td></tr>')
+                }
+            }
+        })
+    })
+</script>

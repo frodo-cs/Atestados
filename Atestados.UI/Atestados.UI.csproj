@@ -190,9 +190,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ArchivoController.cs" />
     <Compile Include="Controllers\AtestadoController.cs" />
+    <Compile Include="Controllers\Atestados\ArticuloController.cs" />
+    <Compile Include="Controllers\Atestados\CapacitacionController.cs" />
+    <Compile Include="Controllers\Atestados\LibroController.cs" />
     <Compile Include="Controllers\AtestadoXPersonaController.cs" />
     <Compile Include="Controllers\DominioIdiomaController.cs" />
     <Compile Include="Controllers\FechaController.cs" />
+    <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdiomaController.cs" />
     <Compile Include="Controllers\InfoEditorialController.cs" />
@@ -351,10 +355,6 @@
     <Content Include="Views\Atestado\Details.cshtml" />
     <Content Include="Views\Atestado\Edit.cshtml" />
     <Content Include="Views\Atestado\Index.cshtml" />
-    <Content Include="Views\Archivo\Create.cshtml" />
-    <Content Include="Views\Archivo\Delete.cshtml" />
-    <Content Include="Views\Archivo\Details.cshtml" />
-    <Content Include="Views\Archivo\Edit.cshtml" />
     <Content Include="Views\Archivo\Index.cshtml" />
     <Content Include="Views\AtestadoXPersona\Create.cshtml" />
     <Content Include="Views\AtestadoXPersona\Delete.cshtml" />
@@ -376,6 +376,16 @@
     <Content Include="Views\DominioIdioma\Details.cshtml" />
     <Content Include="Views\DominioIdioma\Edit.cshtml" />
     <Content Include="Views\DominioIdioma\Index.cshtml" />
+    <Content Include="Views\Libro\Ver.cshtml" />
+    <Content Include="Views\Libro\Crear.cshtml" />
+    <Content Include="Views\Libro\Index.cshtml" />
+    <Content Include="Views\Funcionario\Index.cshtml" />
+    <Content Include="Views\Articulo\Index.cshtml" />
+    <Content Include="Views\Articulo\Crear.cshtml" />
+    <Content Include="Views\Articulo\Ver.cshtml" />
+    <Content Include="Views\Capacitacion\Crear.cshtml" />
+    <Content Include="Views\Capacitacion\Index.cshtml" />
+    <Content Include="Views\Capacitacion\Ver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
