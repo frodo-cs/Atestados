@@ -19,6 +19,11 @@ namespace Atestados.Objetos.Dtos
         public string Lugar { get; set; }
         public string CatalogoTipo { get; set; }
         public string Enlace { get; set; }
+        public int RubroID { get; set; }
+        public int PaisID { get; set; }
+        public int PersonaID { get; set; }
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFinal { get; set; }
 
         public List<ArchivoDTO> Archivos { get; set; }
         public PaisDTO Pais { get; set; }

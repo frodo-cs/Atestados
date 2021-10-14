@@ -14,20 +14,19 @@ using Newtonsoft.Json;
 
 namespace Atestados.UI.Controllers.Atestados
 {
-    public class LibroController : Controller
+    public class CapacitacionController : Controller
     {
         private AtestadosEntities db = new AtestadosEntities();
         private InformacionAtestado infoAtestado = new InformacionAtestado();
         private InformacionGeneral infoGeneral = new InformacionGeneral();
         private List<ArchivoDTO> archivos = new List<ArchivoDTO>();
-        private List<AutorDTO> autores = new List<AutorDTO>();
 
-        private readonly int Libro = 1;
+        private readonly int Capacitacion = 35;
 
         // GET: Libros
         public ActionResult Index()
         {
-            return View(infoAtestado.CargarAtestadosDeTipo(Libro));
+            return View(infoAtestado.CargarAtestadosDeTipo(Capacitacion));
         }
 
         // GET: Libro/Ver
@@ -48,57 +47,37 @@ namespace Atestados.UI.Controllers.Atestados
         // GET: Libro/Crear
         public ActionResult Crear()
         {
-            LibroDTO libro = new LibroDTO();
-            ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre");
+            AtestadoDTO capacitacion = new AtestadoDTO();
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre");
-            ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID");
-            ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial");        
-            return View(libro);
+            return View(capacitacion);
         }
 
         // POST: Libro/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Crear([Bind(Include = "Annio,Archivos,AtestadoID,AtestadoXPersona,Editorial,Enlace,HoraCreacion,Nombre,NumeroAutores,Observaciones,PaisID,Persona,PersonaID,RubroID,Website")] LibroDTO atestado)
+        public ActionResult Crear([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,CantidadHoras,Observaciones,Persona,PersonaID,RubroID,FechaInicio,FechaFinal")] AtestadoDTO atestado)
         {
             if (ModelState.IsValid)
             {
-                atestado.RubroID = Libro;
-                Atestado a = AutoMapper.Mapper.Map<LibroDTO, Atestado>(atestado);
+                atestado.RubroID = Capacitacion;
+                atestado.PaisID = 52; // Costa Rica
+                Atestado a = AutoMapper.Mapper.Map<AtestadoDTO, Atestado>(atestado);
                 infoAtestado.GuardarAtestado(a);
                 atestado.AtestadoID = a.AtestadoID;
-                InfoEditorial infoEditorial = AutoMapper.Mapper.Map<LibroDTO, InfoEditorial>(atestado);
-                infoAtestado.GuardarInfoEditorial(infoEditorial);
-                Fecha fecha = AutoMapper.Mapper.Map<LibroDTO, Fecha>(atestado);
+                Fecha fecha = AutoMapper.Mapper.Map<AtestadoDTO, Fecha>(atestado);
                 infoAtestado.GuardarFecha(fecha);
 
-                foreach(ArchivoDTO archivo in archivos)
+                foreach (ArchivoDTO archivo in archivos)
                 {
                     Archivo ar = AutoMapper.Mapper.Map<ArchivoDTO, Archivo>(archivo);
                     ar.AtestadoID = a.AtestadoID;
                     infoAtestado.GuardarArchivo(ar);
                 }
 
-                foreach(AutorDTO autor in autores)
-                {
-                    Persona persona = AutoMapper.Mapper.Map<AutorDTO, Persona>(autor);
-                    infoGeneral.GuardarPersona(persona);
-                    infoAtestado.GuardarAtestadoXPersona(new AtestadoXPersona()
-                    {
-                        AtestadoID = a.AtestadoID,
-                        PersonaID = persona.PersonaID,
-                        Porcentaje = autor.Porcentaje
-                    });
-                }
-
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre", atestado.PaisID);
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
-            ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID", atestado.AtestadoID);
-            ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial", atestado.AtestadoID);
-            ViewBag.RubroID = Libro;
             return View(atestado);
         }
 
@@ -114,10 +93,7 @@ namespace Atestados.UI.Controllers.Atestados
             {
                 return HttpNotFound();
             }
-            ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre", atestado.PaisID);
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
-            ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID", atestado.AtestadoID);
-            ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial", atestado.AtestadoID);
             return View(atestado);
         }
 
@@ -126,18 +102,15 @@ namespace Atestados.UI.Controllers.Atestados
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Annio,Archivos,AtestadoID,AtestadoXPersona,Editorial,Enlace,HoraCreacion,Nombre,NumeroAutores,Observaciones,PaisID,Persona,PersonaID,RubroID,Website")] Atestado atestado)
+        public ActionResult Editar([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,CantidadHoras,Observaciones,Persona,PersonaID,RubroID,FechaInicio,FechaFinal")] Atestado atestado)
         {
             if (ModelState.IsValid)
             {
                 infoAtestado.EditarAtestado(atestado);
                 return RedirectToAction("Index");
             }
-            ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre", atestado.PaisID);
+
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
-            ViewBag.RubroID = new SelectList(db.Rubro, "RubroID", "Nombre", atestado.RubroID);
-            ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID", atestado.AtestadoID);
-            ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial", atestado.AtestadoID);
             return View(atestado);
         }
 
@@ -165,28 +138,7 @@ namespace Atestados.UI.Controllers.Atestados
             return RedirectToAction("Index");
         }
 
-
-        [HttpPost]
-        public JsonResult AgregarAutor(AutorDTO autorData)
-        {
-
-            AutorDTO autor = new AutorDTO()
-            {
-                Nombre = autorData.Nombre,
-                PrimerApellido = autorData.PrimerApellido,
-                SegundoApellido = autorData.SegundoApellido,
-                Porcentaje = autorData.Porcentaje,
-                Email = autorData.Email
-            };
-
-            var jsonTest = JsonConvert.SerializeObject(autor);
-
-            return Json(new
-            {
-                personaJson = jsonTest
-            });
-        }
-
+       
         [HttpPost]
         public JsonResult Cargar(HttpPostedFileBase archivo)
         {
@@ -198,13 +150,14 @@ namespace Atestados.UI.Controllers.Atestados
 
             var jsonTest = JsonConvert.SerializeObject(new ArchivoDTO
             {
-                AtestadoID = Libro,
+                AtestadoID = Capacitacion,
                 Nombre = Path.GetFileName(archivo.FileName),
                 TipoArchivo = archivo.ContentType,
                 Datos = bytes
             });
 
-            return Json(new {
+            return Json(new
+            {
                 archivoJson = jsonTest
             });
         }

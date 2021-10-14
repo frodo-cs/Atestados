@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace Atestados.UI.Controllers.Atestados
 {
-    public class LibroController : Controller
+    public class ArticuloController : Controller
     {
         private AtestadosEntities db = new AtestadosEntities();
         private InformacionAtestado infoAtestado = new InformacionAtestado();
@@ -22,15 +22,15 @@ namespace Atestados.UI.Controllers.Atestados
         private List<ArchivoDTO> archivos = new List<ArchivoDTO>();
         private List<AutorDTO> autores = new List<AutorDTO>();
 
-        private readonly int Libro = 1;
+        private readonly int Articulo = 2;
 
-        // GET: Libros
+        // GET: Articulos
         public ActionResult Index()
         {
-            return View(infoAtestado.CargarAtestadosDeTipo(Libro));
+            return View(infoAtestado.CargarAtestadosDeTipo(Articulo));
         }
 
-        // GET: Libro/Ver
+        // GET: Articulo/Ver
         public ActionResult Ver(int? id)
         {
             if (id == null)
@@ -45,25 +45,25 @@ namespace Atestados.UI.Controllers.Atestados
             return View(atestado);
         }
 
-        // GET: Libro/Crear
+        // GET: Articulo/Crear
         public ActionResult Crear()
         {
             LibroDTO libro = new LibroDTO();
             ViewBag.PaisID = new SelectList(db.Pais, "PaisID", "Nombre");
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre");
             ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID");
-            ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial");        
+            ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial");
             return View(libro);
         }
 
-        // POST: Libro/Crear
+        // POST: Articulo/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Crear([Bind(Include = "Annio,Archivos,AtestadoID,AtestadoXPersona,Editorial,Enlace,HoraCreacion,Nombre,NumeroAutores,Observaciones,PaisID,Persona,PersonaID,RubroID,Website")] LibroDTO atestado)
         {
             if (ModelState.IsValid)
             {
-                atestado.RubroID = Libro;
+                atestado.RubroID = Articulo;
                 Atestado a = AutoMapper.Mapper.Map<LibroDTO, Atestado>(atestado);
                 infoAtestado.GuardarAtestado(a);
                 atestado.AtestadoID = a.AtestadoID;
@@ -72,14 +72,14 @@ namespace Atestados.UI.Controllers.Atestados
                 Fecha fecha = AutoMapper.Mapper.Map<LibroDTO, Fecha>(atestado);
                 infoAtestado.GuardarFecha(fecha);
 
-                foreach(ArchivoDTO archivo in archivos)
+                foreach (ArchivoDTO archivo in archivos)
                 {
                     Archivo ar = AutoMapper.Mapper.Map<ArchivoDTO, Archivo>(archivo);
                     ar.AtestadoID = a.AtestadoID;
                     infoAtestado.GuardarArchivo(ar);
                 }
 
-                foreach(AutorDTO autor in autores)
+                foreach (AutorDTO autor in autores)
                 {
                     Persona persona = AutoMapper.Mapper.Map<AutorDTO, Persona>(autor);
                     infoGeneral.GuardarPersona(persona);
@@ -98,11 +98,11 @@ namespace Atestados.UI.Controllers.Atestados
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
             ViewBag.AtestadoID = new SelectList(db.Fecha, "FechaID", "FechaID", atestado.AtestadoID);
             ViewBag.AtestadoID = new SelectList(db.InfoEditorial, "InfoEditorialID", "Editorial", atestado.AtestadoID);
-            ViewBag.RubroID = Libro;
+            ViewBag.RubroID = Articulo;
             return View(atestado);
         }
 
-        // GET: Libro/Editar
+        // GET: Articulo/Editar
         public ActionResult Editar(int? id)
         {
             if (id == null)
@@ -121,7 +121,7 @@ namespace Atestados.UI.Controllers.Atestados
             return View(atestado);
         }
 
-        // POST: Libro/Editar
+        // POST: Articulo/Editar
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -141,7 +141,7 @@ namespace Atestados.UI.Controllers.Atestados
             return View(atestado);
         }
 
-        // GET: Libro/Borrar
+        // GET: Articulo/Borrar
         public ActionResult Borrar(int? id)
         {
             if (id == null)
@@ -156,7 +156,7 @@ namespace Atestados.UI.Controllers.Atestados
             return View(atestado);
         }
 
-        // POST: Libro/Borrar
+        // POST: Articulo/Borrar
         [HttpPost, ActionName("Borrar")]
         [ValidateAntiForgeryToken]
         public ActionResult Borrar(int id)
@@ -198,13 +198,14 @@ namespace Atestados.UI.Controllers.Atestados
 
             var jsonTest = JsonConvert.SerializeObject(new ArchivoDTO
             {
-                AtestadoID = Libro,
+                AtestadoID = Articulo,
                 Nombre = Path.GetFileName(archivo.FileName),
                 TipoArchivo = archivo.ContentType,
                 Datos = bytes
             });
 
-            return Json(new {
+            return Json(new
+            {
                 archivoJson = jsonTest
             });
         }

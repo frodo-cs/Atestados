@@ -190,6 +190,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ArchivoController.cs" />
     <Compile Include="Controllers\AtestadoController.cs" />
+    <Compile Include="Controllers\Atestados\ArticuloController.cs" />
+    <Compile Include="Controllers\Atestados\CapacitacionController.cs" />
     <Compile Include="Controllers\Atestados\LibroController.cs" />
     <Compile Include="Controllers\AtestadoXPersonaController.cs" />
     <Compile Include="Controllers\DominioIdiomaController.cs" />
@@ -378,6 +380,12 @@
     <Content Include="Views\Libro\Crear.cshtml" />
     <Content Include="Views\Libro\Index.cshtml" />
     <Content Include="Views\Funcionario\Index.cshtml" />
+    <Content Include="Views\Articulo\Index.cshtml" />
+    <Content Include="Views\Articulo\Crear.cshtml" />
+    <Content Include="Views\Articulo\Ver.cshtml" />
+    <Content Include="Views\Capacitacion\Crear.cshtml" />
+    <Content Include="Views\Capacitacion\Index.cshtml" />
+    <Content Include="Views\Capacitacion\Ver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

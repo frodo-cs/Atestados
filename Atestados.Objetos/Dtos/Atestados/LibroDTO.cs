@@ -32,6 +32,8 @@ namespace Atestados.Objetos.Dtos
         public int PersonaID { get; set; }
 
         public List<ArchivoDTO> Archivos { get; set; }
+        public List<AutorDTO> Autores { get; set; }
         public List<AtestadoXPersonaDTO> AtestadoXPersona { get; set; }
+
     }
 }
