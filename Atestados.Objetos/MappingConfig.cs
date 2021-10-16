@@ -104,6 +104,20 @@ namespace Atestados.Objetos
                 .ForMember(dest => dest.TipoArchivo,
                     opt => opt.MapFrom(src => src.TipoArchivo));
 
+                config.CreateMap<ArchivoDTO, Archivo>()
+                .ForMember(dest => dest.ArchivoID,
+                    opt => opt.MapFrom(src => src.ArchivoID))
+                .ForMember(dest => dest.Nombre,
+                    opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.Obligatorio,
+                    opt => opt.MapFrom(src => src.Obligatorio))
+                .ForMember(dest => dest.Datos,
+                    opt => opt.MapFrom(src => src.Datos))
+                .ForMember(dest => dest.AtestadoID,
+                    opt => opt.MapFrom(src => src.AtestadoID))
+                .ForMember(dest => dest.TipoArchivo,
+                    opt => opt.MapFrom(src => src.TipoArchivo));
+
                 config.CreateMap<AtestadoXPersona, AtestadoXPersonaDTO>()
                 .ForMember(dest => dest.AtestadoID,
                     opt => opt.MapFrom(src => src.AtestadoID))

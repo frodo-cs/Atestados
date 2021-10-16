@@ -11,6 +11,7 @@ using Atestados.Utilitarios.Constantes;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using System.Web.WebPages;
+using Atestados.Objetos.Dtos;
 
 namespace Atestados.UI.Controllers
 {
@@ -32,7 +33,7 @@ namespace Atestados.UI.Controllers
 
         public ActionResult Index()
         {
-            if (Session["usuarioLogueado"] != null)
+            /*if (Session["usuarioLogueado"] != null)
             {
                 ViewBag.NombreUsuario = Session["usuarioLogueado"].ToString();
                 ViewBag.NombreCompleto = Session["usuarioLogueado"].ToString();
@@ -54,13 +55,14 @@ namespace Atestados.UI.Controllers
             else
             {
                 //return RedirectToAction("Index", "Login");
-                return RedirectToAction("Index", "Funcionario");
-            } 
+                
+            } */
+            return RedirectToAction("Index", "Funcionario");
         }
 
         public ActionResult Dashboard()
         {
-            if (Session["usuarioLogueado"] != null)
+            /*if (Session["usuarioLogueado"] != null)
             {
                 ViewBag.NombreUsuario = Session["usuarioLogueado"].ToString();
                 ViewBag.NombreCompleto = Session["usuarioLogueado"].ToString();
@@ -82,8 +84,11 @@ namespace Atestados.UI.Controllers
             else
             {
                 //return RedirectToAction("Index", "Login");
-                return RedirectToAction("Index", "Funcionario");
-            }
+                
+            } */
+            Session["Archivos"] = new List<ArchivoDTO>();
+            Session["Autores"] = new List<AutorDTO>();
+            return RedirectToAction("Index", "Funcionario");
         }
 
 
