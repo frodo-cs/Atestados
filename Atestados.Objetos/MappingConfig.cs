@@ -86,9 +86,9 @@ namespace Atestados.Objetos
                 .ForMember(dest => dest.Oral,
                     opt => opt.MapFrom(src => src.Oral))
                 .ForMember(dest => dest.Lectura,
-                        opt => opt.MapFrom(src => src.Lectura))
+                    opt => opt.MapFrom(src => src.Lectura))
                 .ForMember(dest => dest.Atestado,
-                        opt => opt.MapFrom(src => src.Atestado.Nombre));
+                    opt => opt.MapFrom(src => src.Atestado.Nombre));
 
                 config.CreateMap<Archivo, ArchivoDTO>()
                 .ForMember(dest => dest.ArchivoID,
@@ -317,6 +317,44 @@ namespace Atestados.Objetos
                 .ForMember(dest => dest.Email,
                     opt => opt.MapFrom(src => src.Email));
 
+                #endregion
+
+                #region Idioma
+                config.CreateMap<IdiomaCertificadoDTO, Atestado>()
+              .ForMember(dest => dest.Nombre,
+                  opt => opt.MapFrom(src => src.Nombre))
+              .ForMember(dest => dest.Nombre,
+                  opt => opt.MapFrom(src => src.Nombre))
+              .ForMember(dest => dest.NumeroAutores,
+                  opt => opt.MapFrom(src => 1))
+              .ForMember(dest => dest.HoraCreacion,
+                  opt => opt.MapFrom(src => DateTime.Now))
+              .ForMember(dest => dest.Enlace,
+                  opt => opt.MapFrom(src => src.Enlace))
+              .ForMember(dest => dest.PaisID,
+                  opt => opt.MapFrom(src => src.PaisID))
+              .ForMember(dest => dest.Observaciones,
+                  opt => opt.MapFrom(src => src.Observaciones))
+              .ForMember(dest => dest.Persona,
+                  opt => opt.MapFrom(src => src.Persona))
+              .ForMember(dest => dest.PersonaID,
+                  opt => opt.MapFrom(src => src.PersonaID))
+              .ForMember(dest => dest.RubroID,
+                  opt => opt.MapFrom(src => src.RubroID));
+
+                config.CreateMap<IdiomaCertificadoDTO, DominioIdioma>()
+                .ForMember(dest => dest.DominioIdiomaID,
+                    opt => opt.MapFrom(src => src.AtestadoID))
+                .ForMember(dest => dest.Idioma,
+                    opt => opt.MapFrom(src => src.Idioma))
+                .ForMember(dest => dest.Auditiva,
+                    opt => opt.MapFrom(src => src.Auditiva))
+                .ForMember(dest => dest.Escrito,
+                    opt => opt.MapFrom(src => src.Escrito))
+                .ForMember(dest => dest.Oral,
+                    opt => opt.MapFrom(src => src.Oral))
+                .ForMember(dest => dest.Lectura,
+                    opt => opt.MapFrom(src => src.Lectura));
                 #endregion
             });
         }

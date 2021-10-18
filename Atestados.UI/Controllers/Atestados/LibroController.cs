@@ -180,6 +180,11 @@ namespace Atestados.UI.Controllers.Atestados
                 Email = autorData.Email
             };
 
+            if (Session["Autores"] == null)
+            {
+                Session["Autores"] = new List<AutorDTO>();
+            }
+
             List<AutorDTO> autores = (List<AutorDTO>)Session["Autores"];
             autores.Add(autor);
             Session["Autores"] = autores;
@@ -200,6 +205,12 @@ namespace Atestados.UI.Controllers.Atestados
             {
                 bytes = br.ReadBytes(archivo.ContentLength);
             }
+
+            if (Session["Archivos"] == null)
+            {
+                Session["Archivos"] = new List<ArchivoDTO>();
+            }
+
             ArchivoDTO ar = new ArchivoDTO
             {
                 AtestadoID = Libro,

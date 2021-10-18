@@ -19,11 +19,27 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.NumeroAutores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroAutores)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Observaciones)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraCreacion)
         </dd>
 
         <dt>
@@ -35,11 +51,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Lugar)
+            @Html.DisplayNameFor(model => model.Pais.Nombre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Lugar)
+            @Html.DisplayFor(model => model.Pais.Nombre)
         </dd>
 
         <dt>
@@ -59,21 +75,21 @@
         </dd>
 
         <dt>
-            Fecha de inicio
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fecha.FechaInicio)
-        </dd>
-
-        <dt>
-            Fecha de finalización
+            @Html.DisplayNameFor(model => model.Fecha.FechaID)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Fecha.FechaID)
         </dd>
-        <!-- Falta tabla con archivos-->
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InfoEditorial.Editorial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InfoEditorial.Editorial)
+        </dd>
+
     </dl>
 </div>
 <p>

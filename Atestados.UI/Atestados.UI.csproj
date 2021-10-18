@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AtestadoController.cs" />
     <Compile Include="Controllers\Atestados\ArticuloController.cs" />
     <Compile Include="Controllers\Atestados\CapacitacionController.cs" />
+    <Compile Include="Controllers\Atestados\IdiomaController.cs" />
     <Compile Include="Controllers\Atestados\LibroController.cs" />
     <Compile Include="Controllers\AtestadoXPersonaController.cs" />
     <Compile Include="Controllers\DominioIdiomaController.cs" />
@@ -345,22 +346,12 @@
     <Content Include="Views\Pais\Details.cshtml" />
     <Content Include="Views\Pais\Edit.cshtml" />
     <Content Include="Views\Pais\Index.cshtml" />
-    <Content Include="Views\Idioma\Create.cshtml" />
-    <Content Include="Views\Idioma\Delete.cshtml" />
-    <Content Include="Views\Idioma\Details.cshtml" />
-    <Content Include="Views\Idioma\Edit.cshtml" />
-    <Content Include="Views\Idioma\Index.cshtml" />
     <Content Include="Views\Atestado\Create.cshtml" />
     <Content Include="Views\Atestado\Delete.cshtml" />
     <Content Include="Views\Atestado\Details.cshtml" />
     <Content Include="Views\Atestado\Edit.cshtml" />
     <Content Include="Views\Atestado\Index.cshtml" />
     <Content Include="Views\Archivo\Index.cshtml" />
-    <Content Include="Views\AtestadoXPersona\Create.cshtml" />
-    <Content Include="Views\AtestadoXPersona\Delete.cshtml" />
-    <Content Include="Views\AtestadoXPersona\Details.cshtml" />
-    <Content Include="Views\AtestadoXPersona\Edit.cshtml" />
-    <Content Include="Views\AtestadoXPersona\Index.cshtml" />
     <Content Include="Views\InfoEditorial\Create.cshtml" />
     <Content Include="Views\InfoEditorial\Delete.cshtml" />
     <Content Include="Views\InfoEditorial\Details.cshtml" />
@@ -386,6 +377,9 @@
     <Content Include="Views\Capacitacion\Crear.cshtml" />
     <Content Include="Views\Capacitacion\Index.cshtml" />
     <Content Include="Views\Capacitacion\Ver.cshtml" />
+    <Content Include="Views\Idioma\Ver.cshtml" />
+    <Content Include="Views\Idioma\Crear.cshtml" />
+    <Content Include="Views\Idioma\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
