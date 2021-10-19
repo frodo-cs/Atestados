@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Atestados.Objetos.Dtos {
-    class PaisDTO {
+    public class PaisDTO {
         public int PaisID { get; set; }
         public string Nombre { get; set; }
     }

@@ -1,0 +1,95 @@
+﻿@model Atestados.Objetos.Dtos.IdiomaCertificadoDTO
+
+@{
+    ViewBag.Title = "Ver";
+}
+
+<h2>Ver</h2>
+
+<div>
+    <h4>Capacitación Profesional</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Annio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Annio)
+        </dd>
+        <h4>Dominio del idioma</h4>
+        <dt>
+            @Html.DisplayNameFor(model => model.Escrito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Escrito)
+        </dd>
+        <h4>Archivos</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Tipo de archivo
+                </th>
+            </tr>
+            @foreach (var item in Model.Archivos)
+            {
+                <tr>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.TipoArchivo
+                    </td>
+                </tr>
+            }
+        </table>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.AtestadoID }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

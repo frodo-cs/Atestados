@@ -1,0 +1,110 @@
+﻿@model Atestados.Objetos.Dtos.AtestadoDTO
+
+@{
+    ViewBag.Title = "Ver";
+}
+
+<h2>Ver</h2>
+
+<div>
+    <h4>Capacitación Profesional</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lugar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rubro.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rubro.Nombre)
+        </dd>
+
+        <dt>
+            Fecha de inicio
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha.FechaInicio)
+        </dd>
+
+        <dt>
+            Fecha de finalización
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha.FechaID)
+        </dd>
+
+        <h4>Archivos</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Tipo de archivo
+                </th>
+            </tr>
+            @foreach (var item in Model.Archivos)
+            {
+                <tr>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.TipoArchivo
+                    </td>
+                </tr>
+            }
+        </table>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.AtestadoID }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+</script>

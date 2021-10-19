@@ -14,4 +14,5 @@ namespace Atestados.Objetos.Dtos
         public string SegundoApellido { get; set; }
         public string Email { get; set; }
     }
+
 }

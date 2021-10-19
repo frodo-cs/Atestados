@@ -40,6 +40,7 @@
       <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -56,6 +57,16 @@
     <Compile Include="Clases\Configuracion.cs" />
     <Compile Include="Clases\oCredenciales.cs" />
     <Compile Include="Clases\oRespuesta.cs" />
+    <Compile Include="Dtos\ArchivoDTO.cs" />
+    <Compile Include="Dtos\AtestadoDTO.cs" />
+    <Compile Include="Dtos\Atestados\IdiomaCertificadoDTO.cs" />
+    <Compile Include="Dtos\Atestados\LibroDTO.cs" />
+    <Compile Include="Dtos\AtestadoXPersonaDTO.cs" />
+    <Compile Include="Dtos\AutorDTO.cs" />
+    <Compile Include="Dtos\DominioIdiomaDTO.cs" />
+    <Compile Include="Dtos\FechaDTO.cs" />
+    <Compile Include="Dtos\IdiomaDTO.cs" />
+    <Compile Include="Dtos\InfoEditorialDTO.cs" />
     <Compile Include="Dtos\PaisDTO.cs" />
     <Compile Include="Dtos\PersonaDTO.cs" />
     <Compile Include="Dtos\RubroDTO.cs" />

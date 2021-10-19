@@ -11,6 +11,7 @@ using Atestados.Utilitarios.Constantes;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using System.Web.WebPages;
+using Atestados.Objetos.Dtos;
 
 namespace Atestados.UI.Controllers
 {
@@ -32,7 +33,7 @@ namespace Atestados.UI.Controllers
 
         public ActionResult Index()
         {
-            if (Session["usuarioLogueado"] != null) 
+            /*if (Session["usuarioLogueado"] != null)
             {
                 ViewBag.NombreUsuario = Session["usuarioLogueado"].ToString();
                 ViewBag.NombreCompleto = Session["usuarioLogueado"].ToString();
@@ -53,13 +54,15 @@ namespace Atestados.UI.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Login");
-            }
+                //return RedirectToAction("Index", "Login");
+                
+            } */
+            return RedirectToAction("Index", "Funcionario");
         }
 
         public ActionResult Dashboard()
         {
-            if (Session["usuarioLogueado"] != null)
+            /*if (Session["usuarioLogueado"] != null)
             {
                 ViewBag.NombreUsuario = Session["usuarioLogueado"].ToString();
                 ViewBag.NombreCompleto = Session["usuarioLogueado"].ToString();
@@ -80,8 +83,12 @@ namespace Atestados.UI.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Login");
-            }
+                //return RedirectToAction("Index", "Login");
+                
+            } */
+            Session["Archivos"] = new List<ArchivoDTO>();
+            Session["Autores"] = new List<AutorDTO>();
+            return RedirectToAction("Index", "Funcionario");
         }
 
 
@@ -98,7 +105,7 @@ namespace Atestados.UI.Controllers
                 }
 
                 //Acceso a servicios
-                var respuesta = ServiciosSeguridad.UsuariosDisponibles(0, 1, correoElectronico, true, false,"1.1.1.1", Session["SessionID"].ToString(), int.Parse(Session["CodigoUsuarioLogueado"].ToString()), Session["UsuarioLogueado"].ToString());
+                var respuesta = ServiciosSeguridad.UsuariosDisponibles(0, 1, correoElectronico, true, false, "1.1.1.1", Session["SessionID"].ToString(), int.Parse(Session["CodigoUsuarioLogueado"].ToString()), Session["UsuarioLogueado"].ToString());
 
                 if (respuesta.CodigoRespuesta == -1 && respuesta.ObjetoRespuesta == null && respuesta.DescripcionRespuesta.Contains("No posee"))
                 {
@@ -128,13 +135,12 @@ namespace Atestados.UI.Controllers
 
                 return Json(new { CodigoRespuesta = respuesta.CodigoRespuesta, DescripcionRespuesta = respuesta.DescripcionRespuesta, listado = info }, JsonRequestBehavior.AllowGet);
             }
-            catch 
+            catch
             {
                 respuestaValidacion.CodigoRespuesta = -1;
                 respuestaValidacion.MensajeRespuesta = "";
                 return new JsonResult { Data = respuestaValidacion, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            }
-
+            }         
         }
 
 

@@ -7,7 +7,7 @@ CREATE TABLE Persona (
 	Nombre VARCHAR(50) NOT NULL,
 	PrimerApellido VARCHAR(50) NOT NULL,
 	SegundoApellido VARCHAR(50),
-	Email VARCHAR(100) NOT NULL,
+	Email VARCHAR(100) NOT NULL UNIQUE,
 	CategoriaActual INT,
 	TipoUsuario INT,
 	Telefono INT
@@ -15,12 +15,12 @@ CREATE TABLE Persona (
 
 CREATE TABLE Pais (
 	PaisID INT IDENTITY NOT NULL PRIMARY KEY,
-	Nombre VARCHAR(100)
+	Nombre VARCHAR(100) NOT NULL
 )
 
 CREATE TABLE TipoRubro (
 	TipoRubroID INT IDENTITY NOT NULL PRIMARY KEY,
-	Nombre VARCHAR(100)
+	Nombre VARCHAR(100) NOT NULL
 )
 
 CREATE TABLE Rubro (
@@ -43,14 +43,14 @@ CREATE TABLE Atestado (
 	Lugar VARCHAR(250),
 	CatalogoTipo VARCHAR(100),
 	Enlace VARCHAR(250),
-	PaisID INT FOREIGN KEY REFERENCES Pais(PaisID),
-	PersonaID INT FOREIGN KEY REFERENCES Persona(PersonaID),
-	RubroID INT FOREIGN KEY REFERENCES Rubro(RubroID)
+	PaisID INT NOT NULL FOREIGN KEY REFERENCES Pais(PaisID),
+	PersonaID INT NOT NULL FOREIGN KEY REFERENCES Persona(PersonaID),
+	RubroID INT NOT NULL FOREIGN KEY REFERENCES Rubro(RubroID)
 )
 
 CREATE TABLE AtestadoXPersona (
-	AtestadoID INT FOREIGN KEY REFERENCES Atestado(AtestadoID),
-	PersonaID INT FOREIGN KEY REFERENCES Persona(PersonaID),
+	AtestadoID INT NOT NULL FOREIGN KEY REFERENCES Atestado(AtestadoID),
+	PersonaID INT NOT NULL FOREIGN KEY REFERENCES Persona(PersonaID),
 	CONSTRAINT PK_AtestadoXPersona PRIMARY KEY (AtestadoID, PersonaID),
 	Porcentaje FLOAT,
 	Departamento VARCHAR(250)
@@ -59,22 +59,24 @@ CREATE TABLE AtestadoXPersona (
 CREATE TABLE Archivo (
 	ArchivoID INT IDENTITY NOT NULL PRIMARY KEY,
 	Obligatorio INT NOT NULL,
-	Nombre VARCHAR(100),
-	Datos VARBINARY(MAX),
-	TipoArchivo VARCHAR(200),
-	AtestadoID INT FOREIGN KEY REFERENCES Atestado(AtestadoID)
+	Nombre VARCHAR(100) NOT NULL,
+	Datos VARBINARY(MAX) NOT NULL,
+	TipoArchivo NVARCHAR(200) NOT NULL,
+	AtestadoID INT NOT NULL FOREIGN KEY REFERENCES Atestado(AtestadoID)
 )
 
 CREATE TABLE Fecha (
-	FechaID INT IDENTITY NOT NULL PRIMARY KEY REFERENCES Atestado(AtestadoID),
+	FechaID INT NOT NULL PRIMARY KEY,
 	FechaInicio DATE,
-	FechaFinal DATE
+	FechaFinal DATE,
+	FOREIGN KEY (FechaID) REFERENCES Atestado(AtestadoID)
 )
 
 CREATE TABLE InfoEditorial (
-	InfoEditorialID INT NOT NULL PRIMARY KEY REFERENCES Atestado(AtestadoID),
-	Editorial VARCHAR(100),
-	Website VARCHAR(250)
+	InfoEditorialID INT NOT NULL PRIMARY KEY,
+	Editorial VARCHAR(100) NOT NULL,
+	Website VARCHAR(250) NOT NULL,
+	FOREIGN KEY (InfoEditorialID) REFERENCES Atestado(AtestadoID)
 )
 
 CREATE TABLE Idioma (
@@ -83,12 +85,13 @@ CREATE TABLE Idioma (
 )
 
 CREATE TABLE DominioIdioma (
-	DominioIdiomaID INT IDENTITY NOT NULL PRIMARY KEY REFERENCES Atestado(AtestadoID),
+	DominioIdiomaID INT NOT NULL PRIMARY KEY,
 	IdiomaID INT FOREIGN KEY REFERENCES Idioma(IdiomaID),
 	Lectura INT NOT NULL,
 	Escrito INT NOT NULL,
 	Auditiva INT NOT NULL,
-	Oral INT NOT NULL
+	Oral INT NOT NULL,
+	FOREIGN KEY (DominioIdiomaID) REFERENCES Atestado(AtestadoID)
 )
 
 

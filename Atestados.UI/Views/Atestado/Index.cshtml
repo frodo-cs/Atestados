@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Atestados.Objetos.Dtos.AtestadoDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroAutores)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoraCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enviado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descargado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadHoras)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CatalogoTipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Persona)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rubro)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroAutores)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observaciones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoraCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enviado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descargado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadHoras)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lugar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatalogoTipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enlace)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Persona)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rubro)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AtestadoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AtestadoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AtestadoID })
+        </td>
+    </tr>
+}
+
+</table>
