@@ -7,7 +7,7 @@ CREATE TABLE Persona (
 	Nombre VARCHAR(50) NOT NULL,
 	PrimerApellido VARCHAR(50) NOT NULL,
 	SegundoApellido VARCHAR(50),
-	Email VARCHAR(100) NOT NULL,
+	Email VARCHAR(100) NOT NULL UNIQUE,
 	CategoriaActual INT,
 	TipoUsuario INT,
 	Telefono INT

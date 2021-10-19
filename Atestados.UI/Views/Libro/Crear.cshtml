@@ -123,9 +123,6 @@
             <th>
                 Tipo
             </th>
-            <th>
-                Datos
-            </th>
         </tr>
 
     </table>
@@ -196,7 +193,7 @@
                 success: function (response) {
                     var autores = JSON.parse(response.personaJson)
                     if (response != null) {
-                        $("#tablaAutores").append('<tr><td>' + autores.Nombre + '</td><td>' + autores.Porcentaje + '</td><td>' + "" + '</td></tr>')
+                        $("#tablaAutores").append('<tr><td>' + autores.Nombre + '</td><td>' + autores.Porcentaje + '</td></tr>')
                     }
                 }
             })

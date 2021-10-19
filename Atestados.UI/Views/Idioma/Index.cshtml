@@ -1,33 +1,72 @@
-﻿@model IEnumerable<Atestados.Objetos.Dtos.IdiomaDTO>
+﻿@model IEnumerable<Atestados.Objetos.Dtos.AtestadoDTO>
 
 @{
-    ViewBag.Title = "Index";
+    /**/
+
+    ViewBag.Title = "Idioma";
 }
 
-<h2>Index</h2>
+<h2>Capacitaciones Profesionales</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar", "Crear")
 </p>
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Persona.Nombre)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observaciones)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdiomaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdiomaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdiomaID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Persona.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lugar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observaciones)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.AtestadoID }) |
+                @Html.ActionLink("Ver", "Ver", new { id = item.AtestadoID }) |
+                @Html.ActionLink("Borrar", "Borrar", new { id = item.AtestadoID })
+            </td>
+        </tr>
+    }
 
 </table>

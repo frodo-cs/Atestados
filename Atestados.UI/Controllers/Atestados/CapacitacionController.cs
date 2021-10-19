@@ -18,8 +18,6 @@ namespace Atestados.UI.Controllers.Atestados
     {
         private AtestadosEntities db = new AtestadosEntities();
         private InformacionAtestado infoAtestado = new InformacionAtestado();
-        private InformacionGeneral infoGeneral = new InformacionGeneral();
-        private List<ArchivoDTO> archivos = new List<ArchivoDTO>();
 
         private readonly int Capacitacion = 35;
 
@@ -29,7 +27,7 @@ namespace Atestados.UI.Controllers.Atestados
             return View(infoAtestado.CargarAtestadosDeTipo(Capacitacion));
         }
 
-        // GET: Libro/Ver
+        // GET: Capactitacion/Ver
         public ActionResult Ver(int? id)
         {
             if (id == null)
@@ -44,7 +42,7 @@ namespace Atestados.UI.Controllers.Atestados
             return View(atestado);
         }
 
-        // GET: Libro/Crear
+        // GET: Capactitacion/Crear
         public ActionResult Crear()
         {
             AtestadoDTO capacitacion = new AtestadoDTO();
@@ -52,10 +50,10 @@ namespace Atestados.UI.Controllers.Atestados
             return View(capacitacion);
         }
 
-        // POST: Libro/Crear
+        // POST: Capactitacion/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Crear([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,CantidadHoras,Observaciones,Persona,PersonaID,RubroID,FechaInicio,FechaFinal")] AtestadoDTO atestado)
+        public ActionResult Crear([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,CantidadHoras,Observaciones,Persona,PersonaID,RubroID,FechaInicio,FechaFinal,Lugar")] AtestadoDTO atestado)
         {
             if (ModelState.IsValid)
             {
@@ -67,12 +65,15 @@ namespace Atestados.UI.Controllers.Atestados
                 Fecha fecha = AutoMapper.Mapper.Map<AtestadoDTO, Fecha>(atestado);
                 infoAtestado.GuardarFecha(fecha);
 
+                List<ArchivoDTO> archivos = (List<ArchivoDTO>)Session["Archivos"];
                 foreach (ArchivoDTO archivo in archivos)
                 {
                     Archivo ar = AutoMapper.Mapper.Map<ArchivoDTO, Archivo>(archivo);
                     ar.AtestadoID = a.AtestadoID;
                     infoAtestado.GuardarArchivo(ar);
                 }
+
+                Session["Archivos"] = new List<ArchivoDTO>();
 
                 return RedirectToAction("Index");
             }
@@ -81,7 +82,7 @@ namespace Atestados.UI.Controllers.Atestados
             return View(atestado);
         }
 
-        // GET: Libro/Editar
+        // GET: Capactitacion/Editar
         public ActionResult Editar(int? id)
         {
             if (id == null)
@@ -97,12 +98,12 @@ namespace Atestados.UI.Controllers.Atestados
             return View(atestado);
         }
 
-        // POST: Libro/Editar
+        // POST: Capactitacion/Editar
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,CantidadHoras,Observaciones,Persona,PersonaID,RubroID,FechaInicio,FechaFinal")] Atestado atestado)
+        public ActionResult Editar([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,CantidadHoras,Observaciones,Persona,PersonaID,RubroID,FechaInicio,FechaFinal,Lugar")] Atestado atestado)
         {
             if (ModelState.IsValid)
             {
@@ -114,7 +115,7 @@ namespace Atestados.UI.Controllers.Atestados
             return View(atestado);
         }
 
-        // GET: Libro/Borrar
+        // GET: Capactitacion/Borrar
         public ActionResult Borrar(int? id)
         {
             if (id == null)
@@ -129,7 +130,7 @@ namespace Atestados.UI.Controllers.Atestados
             return View(atestado);
         }
 
-        // POST: Libro/Borrar
+        // POST: Capactitacion/Borrar
         [HttpPost, ActionName("Borrar")]
         [ValidateAntiForgeryToken]
         public ActionResult Borrar(int id)
@@ -148,13 +149,23 @@ namespace Atestados.UI.Controllers.Atestados
                 bytes = br.ReadBytes(archivo.ContentLength);
             }
 
-            var jsonTest = JsonConvert.SerializeObject(new ArchivoDTO
+            if(Session["Archivos"] == null)
+            {
+                Session["Archivos"] = new List<ArchivoDTO>();
+            } 
+
+            ArchivoDTO ar = new ArchivoDTO
             {
                 AtestadoID = Capacitacion,
                 Nombre = Path.GetFileName(archivo.FileName),
                 TipoArchivo = archivo.ContentType,
                 Datos = bytes
-            });
+            };
+            List<ArchivoDTO> archivos = (List<ArchivoDTO>)Session["Archivos"];
+            archivos.Add(ar);
+            Session["Archivos"] = archivos;
+
+            var jsonTest = JsonConvert.SerializeObject(ar);
 
             return Json(new
             {

@@ -19,8 +19,6 @@ namespace Atestados.UI.Controllers.Atestados
         private AtestadosEntities db = new AtestadosEntities();
         private InformacionAtestado infoAtestado = new InformacionAtestado();
         private InformacionGeneral infoGeneral = new InformacionGeneral();
-        private List<ArchivoDTO> archivos = new List<ArchivoDTO>();
-        private List<AutorDTO> autores = new List<AutorDTO>();
 
         private readonly int Libro = 1;
 
@@ -71,15 +69,15 @@ namespace Atestados.UI.Controllers.Atestados
                 infoAtestado.GuardarInfoEditorial(infoEditorial);
                 Fecha fecha = AutoMapper.Mapper.Map<LibroDTO, Fecha>(atestado);
                 infoAtestado.GuardarFecha(fecha);
-
+                List<ArchivoDTO> archivos = (List<ArchivoDTO>)Session["Archivos"];
                 foreach(ArchivoDTO archivo in archivos)
                 {
                     Archivo ar = AutoMapper.Mapper.Map<ArchivoDTO, Archivo>(archivo);
                     ar.AtestadoID = a.AtestadoID;
                     infoAtestado.GuardarArchivo(ar);
                 }
-
-                foreach(AutorDTO autor in autores)
+                List<AutorDTO> autores = (List <AutorDTO>)Session["Autores"];
+                foreach (AutorDTO autor in autores)
                 {
                     Persona persona = AutoMapper.Mapper.Map<AutorDTO, Persona>(autor);
                     infoGeneral.GuardarPersona(persona);
@@ -90,6 +88,9 @@ namespace Atestados.UI.Controllers.Atestados
                         Porcentaje = autor.Porcentaje
                     });
                 }
+
+                Session["Archivos"] = new List<ArchivoDTO>();
+                Session["Autores"] = new List<AutorDTO>();
 
                 return RedirectToAction("Index");
             }
@@ -179,6 +180,15 @@ namespace Atestados.UI.Controllers.Atestados
                 Email = autorData.Email
             };
 
+            if (Session["Autores"] == null)
+            {
+                Session["Autores"] = new List<AutorDTO>();
+            }
+
+            List<AutorDTO> autores = (List<AutorDTO>)Session["Autores"];
+            autores.Add(autor);
+            Session["Autores"] = autores;
+
             var jsonTest = JsonConvert.SerializeObject(autor);
 
             return Json(new
@@ -196,13 +206,23 @@ namespace Atestados.UI.Controllers.Atestados
                 bytes = br.ReadBytes(archivo.ContentLength);
             }
 
-            var jsonTest = JsonConvert.SerializeObject(new ArchivoDTO
+            if (Session["Archivos"] == null)
+            {
+                Session["Archivos"] = new List<ArchivoDTO>();
+            }
+
+            ArchivoDTO ar = new ArchivoDTO
             {
                 AtestadoID = Libro,
                 Nombre = Path.GetFileName(archivo.FileName),
                 TipoArchivo = archivo.ContentType,
                 Datos = bytes
-            });
+            };
+            List<ArchivoDTO> archivos = (List<ArchivoDTO>)Session["Archivos"];
+            archivos.Add(ar);
+            Session["Archivos"] = archivos;
+
+            var jsonTest = JsonConvert.SerializeObject(ar);
 
             return Json(new {
                 archivoJson = jsonTest
