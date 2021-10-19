@@ -32,7 +32,7 @@ namespace Atestados.UI.Controllers
 
         public ActionResult Index()
         {
-            if (Session["usuarioLogueado"] != null)
+            if (Session["usuarioLogueado"] != null) 
             {
                 ViewBag.NombreUsuario = Session["usuarioLogueado"].ToString();
                 ViewBag.NombreCompleto = Session["usuarioLogueado"].ToString();
