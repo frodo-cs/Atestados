@@ -21,8 +21,10 @@ namespace Atestados.Objetos.Dtos
         public int RubroID { get; set; }
         [DisplayName("Persona")]
         public int PersonaID { get; set; }
+        [DisplayName("Instancia certificadora")]
+        public string Lugar { get; set; }
 
-        public string Idioma { get; set; }
+        public int IdiomaID { get; set; }
         public int Lectura { get; set; }
         public int Escrito { get; set; }
         public int Auditiva { get; set; }

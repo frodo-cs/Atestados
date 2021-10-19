@@ -73,10 +73,38 @@
         <dd>
             @Html.DisplayFor(model => model.Fecha.FechaID)
         </dd>
-        <!-- Falta tabla con archivos-->
+
+        <h4>Archivos</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Tipo de archivo
+                </th>
+            </tr>
+            @foreach (var item in Model.Archivos)
+            {
+                <tr>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.TipoArchivo
+                    </td>
+                </tr>
+            }
+        </table>
     </dl>
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.AtestadoID }) |
     @Html.ActionLink("Regresar a la lista", "Index")
 </p>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+</script>

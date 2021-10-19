@@ -1,4 +1,4 @@
-﻿@model Atestados.Objetos.Dtos.AtestadoDTO
+﻿@model Atestados.Objetos.Dtos.IdiomaCertificadoDTO
 
 @{
     ViewBag.Title = "Crear";
@@ -10,80 +10,142 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Capacitación Profesional</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        <b class="control-label col-md-2">Nombre de la Capacitación</b>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>Idioma</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <b class="control-label col-md-2">Nombre de la certificación</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Enlace, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Enlace, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Enlace, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Annio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Annio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Annio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Lugar, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Lugar, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Lugar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PersonaID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PersonaID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PersonaID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdiomaID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdiomaID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdiomaID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h4>Dominio de idioma</h4>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Escrito, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                A1
+                @Html.RadioButtonFor(model => model.Escrito, 1)
+                A2
+                @Html.RadioButtonFor(model => model.Escrito, 2)
+                B1
+                @Html.RadioButtonFor(model => model.Escrito, 3)
+                B2
+                @Html.RadioButtonFor(model => model.Escrito, 4)
+                C1
+                @Html.RadioButtonFor(model => model.Escrito, 5)
+                C2
+                @Html.RadioButtonFor(model => model.Escrito, 6)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Oral, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                A1
+                @Html.RadioButtonFor(model => model.Oral, 1)
+                A2
+                @Html.RadioButtonFor(model => model.Oral, 2)
+                B1
+                @Html.RadioButtonFor(model => model.Oral, 3)
+                B2
+                @Html.RadioButtonFor(model => model.Oral, 4)
+                C1
+                @Html.RadioButtonFor(model => model.Oral, 5)
+                C2
+                @Html.RadioButtonFor(model => model.Oral, 6)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Auditiva, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                A1
+                @Html.RadioButtonFor(model => model.Auditiva, 1)
+                A2
+                @Html.RadioButtonFor(model => model.Auditiva, 2)
+                B1
+                @Html.RadioButtonFor(model => model.Auditiva, 3)
+                B2
+                @Html.RadioButtonFor(model => model.Auditiva, 4)
+                C1
+                @Html.RadioButtonFor(model => model.Auditiva, 5)
+                C2
+                @Html.RadioButtonFor(model => model.Auditiva, 6)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Lectura, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                A1
+                @Html.RadioButtonFor(model => model.Lectura, 1)
+                A2
+                @Html.RadioButtonFor(model => model.Lectura, 2)
+                B1
+                @Html.RadioButtonFor(model => model.Lectura, 3)
+                B2
+                @Html.RadioButtonFor(model => model.Lectura, 4)
+                C1
+                @Html.RadioButtonFor(model => model.Lectura, 5)
+                C2
+                @Html.RadioButtonFor(model => model.Lectura, 6)
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Enlace, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Enlace, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Enlace, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.FechaInicio, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.FechaFinal, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.FechaFinal, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.FechaFinal, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CantidadHoras, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CantidadHoras, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CantidadHoras, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Lugar, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Lugar, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Lugar, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.PersonaID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("PersonaID", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.PersonaID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Crear" class="btn btn-default" id="submit" />
         </div>
     </div>
-</div>
+
 }
 
 <div class="form-horizontal">
@@ -129,7 +191,7 @@
         var data = new FormData(this);
         $('#archivo').val('');
         $.ajax({
-            url: '/Atestados/Capacitacion/Cargar',
+            url: '/Atestados/Idioma/Cargar',
             data: data,
             cache: false,
             contentType: false,

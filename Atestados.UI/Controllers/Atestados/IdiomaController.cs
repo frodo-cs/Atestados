@@ -45,25 +45,27 @@ namespace Atestados.UI.Controllers.Atestados
         // GET: Idioma/Crear
         public ActionResult Crear()
         {
-            AtestadoDTO capacitacion = new AtestadoDTO();
+            IdiomaCertificadoDTO idioma = new IdiomaCertificadoDTO();
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre");
-            return View(capacitacion);
+            ViewBag.IdiomaID = new SelectList(db.Idioma, "IdiomaID", "Nombre");
+            return View(idioma);
         }
 
         // POST: Idioma/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Crear([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,CantidadHoras,Observaciones,Persona,PersonaID,RubroID,FechaInicio,FechaFinal")] AtestadoDTO atestado)
+        public ActionResult Crear([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,Observaciones,Persona,PersonaID,RubroID,Annio,Lectura,Escrito,Oral,Auditiva")] IdiomaCertificadoDTO atestado)
         {
             if (ModelState.IsValid)
             {
                 atestado.RubroID = Idioma;
                 atestado.PaisID = 52; // Costa Rica
-                Atestado a = AutoMapper.Mapper.Map<AtestadoDTO, Atestado>(atestado);
+                Atestado a = AutoMapper.Mapper.Map<IdiomaCertificadoDTO, Atestado>(atestado);
                 infoAtestado.GuardarAtestado(a);
                 atestado.AtestadoID = a.AtestadoID;
-                Fecha fecha = AutoMapper.Mapper.Map<AtestadoDTO, Fecha>(atestado);
-                infoAtestado.GuardarFecha(fecha);
+
+                DominioIdioma dominio = AutoMapper.Mapper.Map<IdiomaCertificadoDTO, DominioIdioma>(atestado);
+                infoAtestado.GuardarDominioIdioma(dominio);
 
                 List<ArchivoDTO> archivos = (List<ArchivoDTO>)Session["Archivos"];
                 foreach (ArchivoDTO archivo in archivos)
@@ -73,10 +75,13 @@ namespace Atestados.UI.Controllers.Atestados
                     infoAtestado.GuardarArchivo(ar);
                 }
 
+                Session["Archivos"] = new List<ArchivoDTO>();
+
                 return RedirectToAction("Index");
             }
 
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
+            ViewBag.IdiomaID = new SelectList(db.Idioma, "IdiomaID", "Nombre", atestado.IdiomaID);
             return View(atestado);
         }
 
@@ -88,11 +93,13 @@ namespace Atestados.UI.Controllers.Atestados
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Atestado atestado = infoAtestado.CargarAtestadoParaEditar(id);
+            IdiomaCertificadoDTO idioma = AutoMapper.Mapper.Map<Atestado, IdiomaCertificadoDTO>(atestado);
             if (atestado == null)
             {
                 return HttpNotFound();
             }
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
+            ViewBag.IdiomaID = new SelectList(db.Idioma, "IdiomaID", "Nombre", idioma.IdiomaID);
             return View(atestado);
         }
 
@@ -101,7 +108,7 @@ namespace Atestados.UI.Controllers.Atestados
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,CantidadHoras,Observaciones,Persona,PersonaID,RubroID,FechaInicio,FechaFinal")] Atestado atestado)
+        public ActionResult Editar([Bind(Include = "Fecha,Archivos,AtestadoID,Enlace,HoraCreacion,Nombre,Observaciones,Persona,PersonaID,RubroID,Annio,Lectura,Escrito,Oral,Auditiva")] Atestado atestado)
         {
             if (ModelState.IsValid)
             {
@@ -110,6 +117,7 @@ namespace Atestados.UI.Controllers.Atestados
             }
 
             ViewBag.PersonaID = new SelectList(db.Persona, "PersonaID", "Nombre", atestado.PersonaID);
+           // ViewBag.IdiomaID = new SelectList(db.Idioma, "IdiomaID", "Nombre", atestado.IdiomaID);
             return View(atestado);
         }
 
@@ -147,6 +155,11 @@ namespace Atestados.UI.Controllers.Atestados
                 bytes = br.ReadBytes(archivo.ContentLength);
             }
 
+            if (Session["Archivos"] == null)
+            {
+                Session["Archivos"] = new List<ArchivoDTO>();
+            }
+
             ArchivoDTO ar = new ArchivoDTO
             {
                 AtestadoID = Idioma,
@@ -172,6 +185,7 @@ namespace Atestados.UI.Controllers.Atestados
             ArchivoDTO archivo = infoAtestado.CargarArchivo(archivoID);
             return File(archivo.Datos, archivo.TipoArchivo, archivo.Nombre);
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

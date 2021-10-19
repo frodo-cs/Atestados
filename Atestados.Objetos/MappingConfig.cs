@@ -339,14 +339,16 @@ namespace Atestados.Objetos
                   opt => opt.MapFrom(src => src.Persona))
               .ForMember(dest => dest.PersonaID,
                   opt => opt.MapFrom(src => src.PersonaID))
+              .ForMember(dest => dest.Lugar,
+                  opt => opt.MapFrom(src => src.Lugar))
               .ForMember(dest => dest.RubroID,
                   opt => opt.MapFrom(src => src.RubroID));
 
                 config.CreateMap<IdiomaCertificadoDTO, DominioIdioma>()
                 .ForMember(dest => dest.DominioIdiomaID,
                     opt => opt.MapFrom(src => src.AtestadoID))
-                .ForMember(dest => dest.Idioma,
-                    opt => opt.MapFrom(src => src.Idioma))
+                .ForMember(dest => dest.IdiomaID,
+                    opt => opt.MapFrom(src => src.IdiomaID))
                 .ForMember(dest => dest.Auditiva,
                     opt => opt.MapFrom(src => src.Auditiva))
                 .ForMember(dest => dest.Escrito,

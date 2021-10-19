@@ -188,24 +188,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ArchivoController.cs" />
-    <Compile Include="Controllers\AtestadoController.cs" />
     <Compile Include="Controllers\Atestados\ArticuloController.cs" />
     <Compile Include="Controllers\Atestados\CapacitacionController.cs" />
+    <Compile Include="Controllers\Atestados\CertificadoController.cs" />
     <Compile Include="Controllers\Atestados\IdiomaController.cs" />
     <Compile Include="Controllers\Atestados\LibroController.cs" />
-    <Compile Include="Controllers\AtestadoXPersonaController.cs" />
-    <Compile Include="Controllers\DominioIdiomaController.cs" />
-    <Compile Include="Controllers\FechaController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IdiomaController.cs" />
-    <Compile Include="Controllers\InfoEditorialController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
-    <Compile Include="Controllers\RubroController.cs" />
-    <Compile Include="Controllers\TipoRubroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -331,42 +322,11 @@
     <Content Include="Views\Persona\Details.cshtml" />
     <Content Include="Views\Persona\Edit.cshtml" />
     <Content Include="Views\Persona\Index.cshtml" />
-    <Content Include="Views\TipoRubro\Create.cshtml" />
-    <Content Include="Views\TipoRubro\Delete.cshtml" />
-    <Content Include="Views\TipoRubro\Details.cshtml" />
-    <Content Include="Views\TipoRubro\Edit.cshtml" />
-    <Content Include="Views\TipoRubro\Index.cshtml" />
-    <Content Include="Views\Rubro\Create.cshtml" />
-    <Content Include="Views\Rubro\Delete.cshtml" />
-    <Content Include="Views\Rubro\Details.cshtml" />
-    <Content Include="Views\Rubro\Edit.cshtml" />
-    <Content Include="Views\Rubro\Index.cshtml" />
-    <Content Include="Views\Pais\Create.cshtml" />
-    <Content Include="Views\Pais\Delete.cshtml" />
-    <Content Include="Views\Pais\Details.cshtml" />
-    <Content Include="Views\Pais\Edit.cshtml" />
-    <Content Include="Views\Pais\Index.cshtml" />
     <Content Include="Views\Atestado\Create.cshtml" />
     <Content Include="Views\Atestado\Delete.cshtml" />
     <Content Include="Views\Atestado\Details.cshtml" />
     <Content Include="Views\Atestado\Edit.cshtml" />
     <Content Include="Views\Atestado\Index.cshtml" />
-    <Content Include="Views\Archivo\Index.cshtml" />
-    <Content Include="Views\InfoEditorial\Create.cshtml" />
-    <Content Include="Views\InfoEditorial\Delete.cshtml" />
-    <Content Include="Views\InfoEditorial\Details.cshtml" />
-    <Content Include="Views\InfoEditorial\Edit.cshtml" />
-    <Content Include="Views\InfoEditorial\Index.cshtml" />
-    <Content Include="Views\Fecha\Create.cshtml" />
-    <Content Include="Views\Fecha\Delete.cshtml" />
-    <Content Include="Views\Fecha\Details.cshtml" />
-    <Content Include="Views\Fecha\Edit.cshtml" />
-    <Content Include="Views\Fecha\Index.cshtml" />
-    <Content Include="Views\DominioIdioma\Create.cshtml" />
-    <Content Include="Views\DominioIdioma\Delete.cshtml" />
-    <Content Include="Views\DominioIdioma\Details.cshtml" />
-    <Content Include="Views\DominioIdioma\Edit.cshtml" />
-    <Content Include="Views\DominioIdioma\Index.cshtml" />
     <Content Include="Views\Libro\Ver.cshtml" />
     <Content Include="Views\Libro\Crear.cshtml" />
     <Content Include="Views\Libro\Index.cshtml" />
@@ -384,6 +344,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Views\Certificado\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
