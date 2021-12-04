@@ -8,6 +8,12 @@ namespace Atestados.Utilitarios.Constantes
 {
     public static class Constantes
     {
+
+        public enum Tipo
+        {
+            Funcionario, Administrador, Comision, RRHH, VIE
+        }
+
         public struct Configuraciones
         {
             public const string CodigoExito = "CodigoExito";

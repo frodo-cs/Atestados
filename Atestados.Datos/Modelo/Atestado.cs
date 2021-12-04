@@ -25,6 +25,7 @@ namespace Atestados.Datos.Modelo
         public string Nombre { get; set; }
         public int NumeroAutores { get; set; }
         public string Observaciones { get; set; }
+        public string Codigo { get; set; }
         public System.DateTime HoraCreacion { get; set; }
         public Nullable<int> Enviado { get; set; }
         public Nullable<int> Descargado { get; set; }

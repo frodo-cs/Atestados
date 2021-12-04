@@ -14,5 +14,6 @@ namespace Atestados.Objetos.Dtos
         public byte[] Datos { get; set; }
         public string TipoArchivo { get; set; }
         public int AtestadoID { get; set; }
+
     }
 }

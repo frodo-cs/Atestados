@@ -8,6 +8,7 @@ using Atestados.Datos.Modelo;
 using Atestados.Objetos;
 using Atestados.Objetos.Dtos;
 using AutoMapper;
+using BCrypt;
 
 namespace Atestados.Negocios.Negocios
 {
@@ -26,7 +27,7 @@ namespace Atestados.Negocios.Negocios
             PersonaDTO personasDto = AutoMapper.Mapper.Map<Persona, PersonaDTO>(persona);
 
             return personasDto;
-            
+
         }
 
         public Persona CargarPersonaParaEditar(int? id)
@@ -80,6 +81,54 @@ namespace Atestados.Negocios.Negocios
             db.Persona.Remove(persona);
             db.SaveChanges();
         }
+        #endregion
+
+        #region Usuario
+
+        public List<UsuarioDTO> ObtenerUsuarios(int id)
+        {
+            List<Persona> personas = db.Persona.Where(x => x.Usuario != null && x.PersonaID != id).ToList();
+            List<UsuarioDTO> usuarios = Mapper.Map<List<Persona>, List<UsuarioDTO>>(personas);
+            for (int i = 0; i < usuarios.Count; i++)
+            {
+                usuarios[i] = Mapper.Map(personas[i].Usuario, usuarios[i]);
+            }
+            return usuarios;
+        }
+
+        public UsuarioDTO UsuarioPorEmail(string email)
+        {
+            Persona persona = db.Persona.Where(x => x.Email == email && x.Usuario != null).FirstOrDefault();
+            if (persona != null)
+            {
+                UsuarioDTO usuarioDTO = AutoMapper.Mapper.Map<Persona, UsuarioDTO>(persona);
+                return AutoMapper.Mapper.Map(persona.Usuario, usuarioDTO);
+            }
+            return null;
+        }
+
+        public void CrearUsuario(UsuarioDTO usuario)
+        {
+            Usuario u = Mapper.Map<UsuarioDTO, Usuario>(usuario);
+            u.Contrasena = BCrypt.Net.BCrypt.HashPassword(usuario.Contrasena);
+            Persona persona = Mapper.Map<UsuarioDTO, Persona>(usuario);
+            persona.TipoUsuario = 0; // Usuario default / funcionario 
+            GuardarPersona(persona);
+            u.UsuarioID = persona.PersonaID;
+
+            db.Usuario.Add(u);
+            db.SaveChanges();
+        }
+
+        public bool ValidarUsuario(string email, string contrasena)
+        {
+            Persona persona = db.Persona.Where(x => x.Email == email && x.Usuario != null).FirstOrDefault();
+            if (persona != null)
+                return BCrypt.Net.BCrypt.Verify(contrasena, persona.Usuario.Contrasena);
+            else
+                return false;
+        }
+
         #endregion
     }
 }

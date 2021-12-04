@@ -3,6 +3,7 @@ using Atestados.Objetos.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,34 @@ namespace Atestados.Negocios.Negocios
     public class InformacionAtestado
     {
         private AtestadosEntities db = new AtestadosEntities();
+        private InformacionGeneral info = new InformacionGeneral();
 
         #region Atestado
+
+        public int ObtenerIDdeRubro(string rubro) {
+            List<Rubro> rubros = db.Rubro.Where(l => l.Nombre.Contains(rubro.Trim().ToLower())).ToList();
+            return rubros.Count > 0 ? rubros.FirstOrDefault().RubroID : -1;
+        }
+
+        public string ObtenerRubro(int id)
+        {
+            return db.Rubro.Where(r => r.RubroID == id).FirstOrDefault().Nombre;
+        }
+
+        public List<AtestadoDTO> CargarAtestadosDePersonaEnviados(int personaID, int v)
+        {
+            List<Atestado> listaAtestado = db.Atestado.Where(a => a.PersonaID == personaID && a.Enviado == v).ToList();
+
+            List<AtestadoDTO> listaAtestadosDto = AutoMapper.Mapper.Map<List<Atestado>, List<AtestadoDTO>>(listaAtestado);
+
+            return listaAtestadosDto;
+        }
+
+        public int ObtenerIDdePais(string pais)
+        {
+            List<Pais> rubros = db.Pais.Where(l => l.Nombre.Contains(pais.Trim().ToLower())).ToList();
+            return rubros.Count > 0 ? rubros.FirstOrDefault().PaisID : -1;
+        }
 
         public AtestadoDTO CargarAtestado(int? id)
         {
@@ -72,6 +99,29 @@ namespace Atestados.Negocios.Negocios
 
         }
 
+        public List<AtestadoDTO> CargarAtestadosDePersona(int? personaID)
+        {
+
+            List<Atestado> listaAtestado = db.Atestado.Where(a => a.PersonaID == personaID).ToList();
+
+            List<AtestadoDTO> listaAtestadosDto = AutoMapper.Mapper.Map<List<Atestado>, List<AtestadoDTO>>(listaAtestado);
+
+            return listaAtestadosDto;
+
+        }
+
+        public List<AtestadoDTO> CargarAtestadosDePersonaPorTipo(int? rubroId, int? personaID)
+        {
+
+            List<Atestado> listaAtestado = db.Atestado.Where(a => a.RubroID == rubroId && a.PersonaID == personaID).ToList();
+
+            List<AtestadoDTO> listaAtestadosDto = AutoMapper.Mapper.Map<List<Atestado>, List<AtestadoDTO>>(listaAtestado);
+
+            return listaAtestadosDto;
+
+        }
+
+
         public void GuardarAtestado(Atestado atestado)
         {
             db.Atestado.Add(atestado);
@@ -80,7 +130,8 @@ namespace Atestados.Negocios.Negocios
 
         public void EditarAtestado(Atestado atestado)
         {
-            db.Entry(atestado).State = EntityState.Modified;
+            //db.Entry(atestado).State = EntityState.Modified;
+            db.Set<Atestado>().AddOrUpdate(atestado);
             db.SaveChanges();
         }
 
@@ -89,6 +140,40 @@ namespace Atestados.Negocios.Negocios
             Atestado atestado = db.Atestado.Find(id);
             db.Atestado.Remove(atestado);
             db.SaveChanges();
+        }
+
+        public List<Atestado> ObtenerAtestadosEnviados()
+        {
+            List<Atestado> query = db.Atestado.Where(a => a.Enviado == 1).ToList();
+            return query;
+        }
+
+        public List<EnviadoDTO> PersonasEntregaron()
+        {
+            List<Atestado> enviados = ObtenerAtestadosEnviados();
+            Dictionary<int, List<Atestado>> temp = new Dictionary<int, List<Atestado>>();
+
+            foreach (Atestado atestado in enviados)
+            {
+                if(!temp.ContainsKey(atestado.PersonaID))
+                {
+                    temp.Add(atestado.PersonaID, new List<Atestado>());
+                }
+
+                temp[atestado.PersonaID].Add(atestado);
+            }
+
+            return temp.Select(kvp => new EnviadoDTO() { 
+                PersonaID = kvp.Key,
+                Atestados = kvp.Value,
+                Persona = info.CargarPersona(kvp.Key)
+            }).ToList();
+        }
+
+        public EnviadoDTO ObtenerEnviado(int personaID)
+        {
+            List<EnviadoDTO> enviados = PersonasEntregaron();
+            return enviados.FirstOrDefault(x => x.PersonaID == personaID);
         }
 
         #endregion
@@ -228,6 +313,13 @@ namespace Atestados.Negocios.Negocios
         #endregion
 
         #region Archivo
+
+        public void BorrarArchivos(int? id)
+        {
+            db.Archivo.RemoveRange(db.Archivo.Where(x => x.AtestadoID == id));
+            db.SaveChanges();
+        }
+
         public ArchivoDTO CargarArchivo(int? id)
         {
             Archivo archivo = db.Archivo.Find(id);
@@ -307,6 +399,33 @@ namespace Atestados.Negocios.Negocios
 
         #region AtestadoXPersona
 
+        public List<AutorDTO> CargarAutoresAtestado(int? id)
+        {
+            var query = db.Persona
+                    .Join(db.AtestadoXPersona,
+                          m => m.PersonaID,
+                          v => v.PersonaID,
+                          (m, v) => new { m, v })
+                    .Where(x => x.v.AtestadoID == id)
+                    .Select(x => new AutorDTO() { 
+                        Nombre = x.m.Nombre,
+                        PrimerApellido = x.m.PrimerApellido,
+                        SegundoApellido = x.m.SegundoApellido,
+                        Email = x.m.Email,
+                        Porcentaje = (double)x.v.Porcentaje,
+                        PersonaID = x.m.PersonaID,
+                        AtestadoID = x.v.AtestadoID,
+                        Departamento = x.v.Departamento
+                    });
+
+            return query.ToList();
+        }
+
+        public List<AtestadoXPersona> CargarAtestadoXPersonasdeAtestado(int? id)
+        {
+            return db.AtestadoXPersona.Where(x => x.AtestadoID == id).ToList();
+        }
+
         public AtestadoXPersonaDTO CargarAtestadoXPersona(int? id)
         {
             AtestadoXPersona atestadoXPersona = db.AtestadoXPersona.Find(id);
@@ -375,6 +494,12 @@ namespace Atestados.Negocios.Negocios
         #endregion
 
         #region DominioIdioma
+
+        public int ObtenerIdioma(string nombre)
+        {
+            List<Idioma> idioma = db.Idioma.Where(l => l.Nombre.Contains(nombre.Trim().ToLower())).ToList();
+            return idioma.Count > 0 ? idioma.FirstOrDefault().IdiomaID : -1;
+        }
 
         public DominioIdiomaDTO CargarDominioIdioma(int? id)
         {

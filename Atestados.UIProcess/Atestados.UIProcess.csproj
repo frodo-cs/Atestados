@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\AccesoSeguridad.cs" />
+    <Compile Include="Clases\Seguridad.cs" />
     <Compile Include="Connected Services\WCF_Personal\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

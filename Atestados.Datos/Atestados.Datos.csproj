@@ -122,6 +122,9 @@
     <Compile Include="Modelo\TipoRubro.cs">
       <DependentUpon>Atestados.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\Usuario.cs">
+      <DependentUpon>Atestados.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="pr_ObtieneConfiguracion_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>

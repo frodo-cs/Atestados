@@ -39,7 +39,7 @@ function Autenticar() {
         $('#cargando').hide();
     } else {
         $.ajax({
-            url: rootDirImage + 'Login/ValidarUsuario',
+            url: rootDirImage + 'Login/Index',
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',

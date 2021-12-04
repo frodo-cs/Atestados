@@ -36,5 +36,6 @@ namespace Atestados.Datos.Modelo
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Rubro> Rubro { get; set; }
         public virtual DbSet<TipoRubro> TipoRubro { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

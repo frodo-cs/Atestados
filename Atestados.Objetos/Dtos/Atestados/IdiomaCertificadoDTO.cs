@@ -2,16 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Atestados.Objetos.Dtos
 {
     public class IdiomaCertificadoDTO
     {
         public int AtestadoID { get; set; }
-        [DisplayName("Nombre del libro")]
+        [StringLength(250)]
+        [Required(ErrorMessage = "Este es un campo requerido")]
         public string Nombre { get; set; }
+        [StringLength(1000)]
         public string Observaciones { get; set; }
+        [StringLength(250)]
+        [Url(ErrorMessage = "Introduzca un URL válido")]
         public string Enlace { get; set; }
+        [DataType(DataType.Date)]
         [DisplayName("Año")]
         public DateTime Annio { get; set; }
         [DisplayName("País")]

@@ -9,6 +9,7 @@ namespace Atestados.Objetos.Dtos
     public class DominioIdiomaDTO
     {
         public int DominioIdiomaID { get; set; }
+        public int IdiomaID { get; set; }
         public string Idioma { get; set; }
         public int Lectura { get; set; }
         public int Escrito { get; set; }

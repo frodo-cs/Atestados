@@ -59,8 +59,11 @@
     <Compile Include="Clases\oRespuesta.cs" />
     <Compile Include="Dtos\ArchivoDTO.cs" />
     <Compile Include="Dtos\AtestadoDTO.cs" />
+    <Compile Include="Dtos\Atestados\EnviadoDTO.cs" />
     <Compile Include="Dtos\Atestados\IdiomaCertificadoDTO.cs" />
     <Compile Include="Dtos\Atestados\LibroDTO.cs" />
+    <Compile Include="Dtos\Atestados\PonenciaDTO.cs" />
+    <Compile Include="Dtos\Atestados\ProyectoDTO.cs" />
     <Compile Include="Dtos\AtestadoXPersonaDTO.cs" />
     <Compile Include="Dtos\AutorDTO.cs" />
     <Compile Include="Dtos\DominioIdiomaDTO.cs" />
@@ -71,6 +74,7 @@
     <Compile Include="Dtos\PersonaDTO.cs" />
     <Compile Include="Dtos\RubroDTO.cs" />
     <Compile Include="Dtos\TipoRubroDTO.cs" />
+    <Compile Include="Dtos\UsuarioDTO.cs" />
     <Compile Include="MappingConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
